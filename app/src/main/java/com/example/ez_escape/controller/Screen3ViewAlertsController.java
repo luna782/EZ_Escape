@@ -8,5 +8,5 @@ package com.example.ez_escape.controller;
  * Spring 2023
  */
 
-public class Screen2ClearController {
+public class Screen3ViewAlertsController {
 }
