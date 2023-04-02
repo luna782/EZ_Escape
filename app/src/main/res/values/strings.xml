@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EZ_Escape</string>
+    <string name="screen1_button">-></string>
+
 </resources>
