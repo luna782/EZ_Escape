@@ -7,19 +7,23 @@
 
     <Button
         android:id="@+id/button8"
-        android:layout_width="153dp"
+        android:layout_width="130dp"
         android:layout_height="81dp"
+        android:layout_marginBottom="-6dp"
         android:text="Settings"
-        tools:layout_editor_absoluteX="283dp"
-        tools:layout_editor_absoluteY="666dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/button7" />
 
     <Button
         android:id="@+id/button7"
-        android:layout_width="153dp"
+        android:layout_width="130dp"
         android:layout_height="81dp"
+        android:layout_marginBottom="-6dp"
         android:text="View Schedule"
-        tools:layout_editor_absoluteX="130dp"
-        tools:layout_editor_absoluteY="666dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button8"
+        app:layout_constraintStart_toEndOf="@+id/button4" />
 
     <TextView
         android:id="@+id/textView2"
@@ -68,25 +72,36 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="41dp"
+        android:layout_marginTop="156dp"
+        android:layout_marginEnd="154dp"
+        android:layout_marginBottom="90dp"
         android:text="Clear"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="528dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintEnd_toStartOf="@+id/button3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <Button
         android:id="@+id/button3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="154dp"
+        android:layout_marginTop="130dp"
+        android:layout_marginBottom="90dp"
         android:text="Save"
-        tools:layout_editor_absoluteX="283dp"
-        tools:layout_editor_absoluteY="528dp" />
+        app:layout_constraintBottom_toTopOf="@+id/button8"
+        app:layout_constraintStart_toEndOf="@+id/button2"
+        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
 
     <Button
         android:id="@+id/button4"
-        android:layout_width="153dp"
+        android:layout_width="129dp"
         android:layout_height="81dp"
+        android:layout_marginBottom="-6dp"
         android:text="New Alert"
-        tools:layout_editor_absoluteX="-24dp"
-        tools:layout_editor_absoluteY="666dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextDate"
