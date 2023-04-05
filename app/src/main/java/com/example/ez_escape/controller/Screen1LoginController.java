@@ -1,6 +1,6 @@
 package com.example.ez_escape.controller;
 
-/**
+/*
  * Description of class.
  *
  * @author Name (abc123)
@@ -29,6 +29,8 @@ public class Screen1LoginController implements View.OnClickListener{
         //Only logic for the onclick method if statement; Implement actual function calls later for getting text
         if (password.equals(mainActivity.getUserInput())) {
             //Change Activity to Screen 2
+            Toast t = Toast.makeText(view.getContext(), "Password match", Toast.LENGTH_SHORT);
+            t.show();
         } else {
             //Tell User that the password is incorrect
             //Currently using Toast to do this

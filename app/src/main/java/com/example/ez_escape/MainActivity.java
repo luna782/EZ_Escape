@@ -24,18 +24,15 @@ public class MainActivity extends AppCompatActivity {
 
         //get the input that the
         inputButton = findViewById(R.id.editTextTextPassword);
-        userInput = String.valueOf(inputButton.getText());
+
 
         //read from the password file
         AssetManager am = getAssets();
         String password = "";
         try {
-            InputStream inStream = am.open("passwords.txt");
+            InputStream inStream = am.open("password.txt");
             Scanner scnr = new Scanner(inStream);
-            String temp = scnr.nextLine();
-            if(! temp.isEmpty() ) {
-                password = temp;
-            }
+            password = scnr.nextLine();
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -46,6 +43,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public String getUserInput(){
+        userInput = String.valueOf(inputButton.getText());
         return this.userInput;
     }
 }
