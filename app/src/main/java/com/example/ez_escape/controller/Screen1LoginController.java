@@ -42,6 +42,5 @@ public class Screen1LoginController implements View.OnClickListener{
         this.password = password;
     }
 
-    public String (String input){}
 
 }

@@ -32,7 +32,10 @@ public class MainActivity extends AppCompatActivity {
         try {
             InputStream inStream = am.open("passwords.txt");
             Scanner scnr = new Scanner(inStream);
-            password = scnr.nextLine();
+            String temp = scnr.nextLine();
+            if(! temp.isEmpty() ) {
+                password = temp;
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
