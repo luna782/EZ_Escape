@@ -11,17 +11,23 @@ package com.example.ez_escape.controller;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.ez_escape.MainActivity;
+
 public class Screen1LoginController implements View.OnClickListener{
     private String message;
     private String password;
+    private MainActivity mainActivity;
     //Method will be called on creation of application;
-    public Screen1LoginController(String password){
+    public Screen1LoginController(String password, MainActivity mainActivity){
         this.message = "Wrong Password";
         this.password = password;
+        this.mainActivity = mainActivity;
     }
-    public void onClick(View view) {
+
+    public void onClick(View view ) {
+
         //Only logic for the onclick method if statement; Implement actual function calls later for getting text
-        if (password.equals(getInputFromTextBox)) {
+        if (password.equals(mainActivity.getUserInput())) {
             //Change Activity to Screen 2
         } else {
             //Tell User that the password is incorrect
@@ -35,5 +41,7 @@ public class Screen1LoginController implements View.OnClickListener{
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String (String input){}
 
 }
