@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         AssetManager am = getAssets();
         String password = "";
         try {
-            InputStream inStream = am.open("passwords.txt");
+            InputStream inStream = am.open("password.txt");
             Scanner scnr = new Scanner(inStream);
             String temp = scnr.nextLine();
             if(! temp.isEmpty() ) {
