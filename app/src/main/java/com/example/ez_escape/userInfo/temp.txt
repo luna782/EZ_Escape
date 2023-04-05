@@ -1,1 +1,0 @@
-Note: This file only exist for the purpose of creating the package folder
