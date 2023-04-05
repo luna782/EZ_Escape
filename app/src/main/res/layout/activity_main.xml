@@ -23,7 +23,7 @@
             android:inputType="textPassword" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/enterButton"
             android:layout_width="26dp"
             android:layout_height="37dp"
             android:layout_weight="1"
