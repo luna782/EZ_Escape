@@ -12,6 +12,9 @@
         android:theme="@style/Theme.EZ_Escape"
         tools:targetApi="31">
         <activity
+            android:name=".Calendar"
+            android:exported="false" />
+        <activity
             android:name=".AddNewAlert"
             android:exported="false" />
         <activity

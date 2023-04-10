@@ -8,9 +8,11 @@ package com.example.ez_escape.controller;
  * Spring 2023
  */
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.ez_escape.Calendar;
 import com.example.ez_escape.MainActivity;
 
 public class Screen1LoginController implements View.OnClickListener{
@@ -29,9 +31,13 @@ public class Screen1LoginController implements View.OnClickListener{
         //Only logic for the onclick method if statement; Implement actual function calls later for getting text
         if (password.equals(mainActivity.getUserInput())) {
             //Change Activity to Screen 2
-            Toast t = Toast.makeText(view.getContext(), "Password match", Toast.LENGTH_SHORT);
-            t.show();
-        } else {
+//            Toast t = Toast.makeText(view.getContext(), "Password match", Toast.LENGTH_SHORT);
+//            t.show();
+            //with successful enter of correct password, go to Calendar activity screen
+            Intent intent = new Intent(mainActivity, Calendar.class);
+            mainActivity.startActivity(intent);
+        }
+        else {
             //Tell User that the password is incorrect
             //Currently using Toast to do this
             Toast t = Toast.makeText(view.getContext(), this.message, Toast.LENGTH_SHORT);
