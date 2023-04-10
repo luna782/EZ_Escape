@@ -12,15 +12,15 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.Toast;
 
-import com.example.ez_escape.Calendar;
+import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.MainActivity;
 
-public class Screen1LoginController implements View.OnClickListener{
+public class MainActivityController implements View.OnClickListener{
     private String message;
     private String password;
     private MainActivity mainActivity;
     //Method will be called on creation of application;
-    public Screen1LoginController(String password, MainActivity mainActivity){
+    public MainActivityController(String password, MainActivity mainActivity){
         this.message = "Wrong Password";
         this.password = password;
         this.mainActivity = mainActivity;
@@ -34,7 +34,7 @@ public class Screen1LoginController implements View.OnClickListener{
 //            Toast t = Toast.makeText(view.getContext(), "Password match", Toast.LENGTH_SHORT);
 //            t.show();
             //with successful enter of correct password, go to Calendar activity screen
-            Intent intent = new Intent(mainActivity, Calendar.class);
+            Intent intent = new Intent(mainActivity, CalendarActivity.class);
             mainActivity.startActivity(intent);
         }
         else {

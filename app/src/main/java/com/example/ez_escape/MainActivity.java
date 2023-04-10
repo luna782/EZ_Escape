@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.ez_escape.controller.Screen1LoginController;
+import com.example.ez_escape.controller.MainActivityController;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         Button screen1Login = findViewById(R.id.enterButton);
-        screen1Login.setOnClickListener( new Screen1LoginController(password, this) );
+        screen1Login.setOnClickListener( new MainActivityController(password, this) );
 
     }
 
