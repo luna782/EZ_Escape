@@ -6,6 +6,23 @@ public class Alert {
     private String sender;
     private String message;
 
+
+    public Alert(String date, String time, String sender, String message){
+        setDate(date);
+        setTime(time);
+        setSender(sender);
+        setMessage(message);
+    }
+
+    /**
+     * addAlert is responsible for writing the data of the passed in Alert object to alerts.csv in the assets folder
+     * @param newAlert
+     */
+    public void addAlert(Alert newAlert){
+        //figure out how to write
+
+    }
+
     public String getDate() {
         return date;
     }
