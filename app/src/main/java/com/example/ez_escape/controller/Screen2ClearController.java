@@ -1,5 +1,7 @@
 package com.example.ez_escape.controller;
 
+import android.view.View;
+
 /**
  * Description of class.
  *
@@ -8,5 +10,9 @@ package com.example.ez_escape.controller;
  * Spring 2023
  */
 
-public class Screen2ClearController{
+public class Screen2ClearController implements View.OnClickListener{
+    @Override
+    public void onClick(View view) {
+
+    }
 }
