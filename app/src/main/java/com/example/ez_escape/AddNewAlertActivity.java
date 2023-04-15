@@ -22,9 +22,10 @@ public class AddNewAlertActivity extends AppCompatActivity {
         String date = "05/2314";
         String time = "01:22:1";
         Alert newAlert = new Alert(date, time, "dude", "bob");
-        newAlert.addAlert(newAlert, this);
+        newAlert.addAlert(this);
         Alert ret = newAlert.getAlert(date, time, this);
-        System.out.print(ret);
+        System.out.println(ret);
+        System.out.println("Ramin Test\n");
 
 
     }

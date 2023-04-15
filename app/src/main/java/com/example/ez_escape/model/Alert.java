@@ -1,16 +1,13 @@
 package com.example.ez_escape.model;
 
-import android.content.res.AssetManager;
+import android.content.Context;
 
 import com.example.ez_escape.AddNewAlertActivity;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.OutputStream;
-import java.io.Writer;
 import java.util.Scanner;
 
 public class Alert {
@@ -35,15 +32,17 @@ public class Alert {
      *
      * YOU CANNOT WRITE TO FILES IN ASSETS FOLDER
      *
-     * @param  newAlert,  addNewAlertActivity
      */
-    public void addAlert(Alert newAlert, AddNewAlertActivity addNewAlertActivity) {
-        File path =  addNewAlertActivity.getApplicationContext().getFilesDir();
+    public void addAlert(AddNewAlertActivity addNewAlertActivity) {
+//        File path =  addNewAlertActivity.getApplicationContext().getFilesDir();
         String fileName = "alerts.csv";
+//        File file = new File()
         try{
-            FileOutputStream writer = new FileOutputStream( new File(path, fileName));
+            FileOutputStream writer = addNewAlertActivity.openFileOutput(fileName, Context.MODE_PRIVATE );
+//            FileWriter writer = new FileWriter( file )
             String data = getDate() + "," + getTime() + "," + getSender() + "," + getMessage();
             writer.write(data.getBytes());
+            writer.flush();
             writer.close();
         }
         catch (Exception e){
@@ -62,17 +61,20 @@ public class Alert {
      *
      * @return
      */
-    public Alert getAlert(String date, String time, AddNewAlertActivity addNewAlertActivity){
-        File path =  addNewAlertActivity.getApplicationContext().getFilesDir();
+    public Alert getAlert(String date, String time, AddNewAlertActivity addNewAlertActivity)  {
         String fileName = "alerts.csv";
-        File readFrom = new File(path, fileName);
+
+//        File readFrom = new File(path, fileName);
         Alert alert = null;
 
         try{
-            Scanner scnr = new Scanner(readFrom);
+            FileInputStream fin =  addNewAlertActivity.openFileInput(fileName);
+//            fin.read();
+            Scanner scnr = new Scanner(fin);
             while(scnr.hasNext()){
                 String line = "";
                 line = scnr.nextLine();
+                System.out.println("Line Read in:" + line);
                 String data[] = line.split(",");
                 if(data[0] == date && data[1] == time){
                     alert = new Alert(data[0], data[1], data[2], data[3]);
