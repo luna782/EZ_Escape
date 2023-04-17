@@ -1,5 +1,15 @@
 package com.example.ez_escape.model;
 
+import android.content.Context;
+
+import com.example.ez_escape.AddNewAlertActivity;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.util.Scanner;
+
 public class Alert {
     private String date;
     private String time;
@@ -15,11 +25,70 @@ public class Alert {
     }
 
     /**
-     * addAlert is responsible for writing the data of the passed in Alert object to alerts.csv in the assets folder
-     * @param newAlert
+     * addAlert is responsible for WRITING the data of the passed in Alert object to a .csv
+     * Data is stored as comma separated values (.csv file in assets folder)
+     * Format of alerts.csv:
+     * date,time,sender,message
+     *
+     * YOU CANNOT WRITE TO FILES IN ASSETS FOLDER
+     *
      */
-    public void addAlert(Alert newAlert){
-        //figure out how to write
+    public void addAlert(AddNewAlertActivity addNewAlertActivity) {
+//        File path =  addNewAlertActivity.getApplicationContext().getFilesDir();
+        String fileName = "alerts.csv";
+//        File file = new File()
+        try{
+            FileOutputStream writer = addNewAlertActivity.openFileOutput(fileName, Context.MODE_PRIVATE );
+//            FileWriter writer = new FileWriter( file )
+            String data = getDate() + "," + getTime() + "," + getSender() + "," + getMessage();
+            writer.write(data.getBytes());
+            writer.flush();
+            writer.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    /**
+     * READS in alerts.csv,
+     * reads line by line searching for a matching date and time
+     * and returns the alert
+     *
+     * Format of alerts.csv:
+     * date,time,sender,message
+     *
+     * @return
+     */
+    public Alert getAlert(String date, String time, AddNewAlertActivity addNewAlertActivity)  {
+        String fileName = "alerts.csv";
+
+//        File readFrom = new File(path, fileName);
+        Alert alert = null;
+
+        try{
+            FileInputStream fin =  addNewAlertActivity.openFileInput(fileName);
+//            fin.read();
+            Scanner scnr = new Scanner(fin);
+            while(scnr.hasNext()){
+                String line = "";
+                line = scnr.nextLine();
+                System.out.println("Line Read in:" + line);
+                String data[] = line.split(",");
+                if(data[0] == date && data[1] == time){
+                    alert = new Alert(data[0], data[1], data[2], data[3]);
+                    return alert;
+                }
+
+            }
+            scnr.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return null;
 
     }
 
@@ -53,5 +122,15 @@ public class Alert {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public String toString(){
+        String s = "";
+        s += "Date: " + getDate() + "\n";
+        s += "Time: " + getTime() + "\n";
+        s += "Sender: " + getSender() + "\n";
+        s += "Message: " + getMessage() + "\n";
+
+        return s;
     }
 }

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.Button;
 
 import com.example.ez_escape.controller.Screen2ClearController;
+import com.example.ez_escape.model.Alert;
 
 public class AddNewAlertActivity extends AppCompatActivity {
 
@@ -16,5 +17,16 @@ public class AddNewAlertActivity extends AppCompatActivity {
 
         Button clear_button = findViewById(R.id.clear_button);
         clear_button.setOnClickListener( new Screen2ClearController() );
+
+        //testing writing and reading the alerts
+        String date = "05/2314";
+        String time = "01:22:1";
+        Alert newAlert = new Alert(date, time, "dude", "bob");
+        newAlert.addAlert(this);
+        Alert ret = newAlert.getAlert(date, time, this);
+        System.out.println(ret);
+        System.out.println("Ramin Test\n");
+
+
     }
 }
