@@ -1,6 +1,8 @@
 package com.example.ez_escape.model;
 
 import android.content.Context;
+import android.renderscript.ScriptGroup;
+import android.text.InputType;
 
 import com.example.ez_escape.AddNewAlertActivity;
 
@@ -9,6 +11,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -68,32 +71,21 @@ public class Alert {
      *
      * @return
      */
-    public Alert getAlert(String date, String time, AddNewAlertActivity addNewAlertActivity)  {
+    public Alert getAlert(String date, String time, AddNewAlertActivity addNewAlertActivity) throws IOException {
         String fileName = "alerts.csv";
 
 //        File readFrom = new File(path, fileName);
         Alert alert = null;
         File file = new File(addNewAlertActivity.getFilesDir(), fileName);
-
+        FileInputStream fis = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
 
         try{
-            FileInputStream fis = new FileInputStream(file);
-            InputStreamReader isr = new InputStreamReader(fis);
-            BufferedReader br = new BufferedReader(isr);
+            fis = new FileInputStream(file);
+            isr = new InputStreamReader(fis);
+            br = new BufferedReader(isr);
 
-//            Scanner scnr = new Scanner(fin);
-//            while(scnr.hasNext()){
-//                String line = "";
-//                line = scnr.nextLine();
-//                System.out.println("Line Read in:" + line);
-//                String data[] = line.split(",");
-//                if(data[0] == date && data[1] == time){
-//                    alert = new Alert(data[0], data[1], data[2], data[3]);
-//                    return alert;
-//                }
-//
-//            }
-//            scnr.close();
             StringBuilder sb = new StringBuilder();
             String line;
             while((line = br.readLine()) != null ){
@@ -102,14 +94,23 @@ public class Alert {
                 String data[] = line.split(",");
                 if(data[0] == date && data[1] == time){
                     alert = new Alert(data[0], data[1], data[2], data[3]);
+                    br.close();
+                    isr.close();
+                    fis.close();
                     return alert;
                 }
             }
         }
         catch (Exception e){
             e.printStackTrace();
+            br.close();
+            isr.close();
+            fis.close();
             return null;
         }
+        br.close();
+        isr.close();
+        fis.close();
         return null;
 
     }
