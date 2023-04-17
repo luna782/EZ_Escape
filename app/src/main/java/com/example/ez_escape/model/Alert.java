@@ -4,10 +4,14 @@ import android.content.Context;
 
 import com.example.ez_escape.AddNewAlertActivity;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
 public class Alert {
@@ -36,14 +40,17 @@ public class Alert {
     public void addAlert(AddNewAlertActivity addNewAlertActivity) {
 //        File path =  addNewAlertActivity.getApplicationContext().getFilesDir();
         String fileName = "alerts.csv";
-//        File file = new File()
+        File file = new File(addNewAlertActivity.getFilesDir(), fileName);
         try{
-            FileOutputStream writer = addNewAlertActivity.openFileOutput(fileName, Context.MODE_PRIVATE );
+            FileOutputStream fos = new FileOutputStream(file);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
 //            FileWriter writer = new FileWriter( file )
             String data = getDate() + "," + getTime() + "," + getSender() + "," + getMessage();
-            writer.write(data.getBytes());
-            writer.flush();
-            writer.close();
+//            fos.write(data.getBytes());
+            osw.write(data);
+            osw.flush();
+            osw.close();
+            fos.close();
         }
         catch (Exception e){
             e.printStackTrace();
@@ -66,23 +73,38 @@ public class Alert {
 
 //        File readFrom = new File(path, fileName);
         Alert alert = null;
+        File file = new File(addNewAlertActivity.getFilesDir(), fileName);
+
 
         try{
-            FileInputStream fin =  addNewAlertActivity.openFileInput(fileName);
-//            fin.read();
-            Scanner scnr = new Scanner(fin);
-            while(scnr.hasNext()){
-                String line = "";
-                line = scnr.nextLine();
+            FileInputStream fis = new FileInputStream(file);
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+
+//            Scanner scnr = new Scanner(fin);
+//            while(scnr.hasNext()){
+//                String line = "";
+//                line = scnr.nextLine();
+//                System.out.println("Line Read in:" + line);
+//                String data[] = line.split(",");
+//                if(data[0] == date && data[1] == time){
+//                    alert = new Alert(data[0], data[1], data[2], data[3]);
+//                    return alert;
+//                }
+//
+//            }
+//            scnr.close();
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while((line = br.readLine()) != null ){
+                sb.append(line);
                 System.out.println("Line Read in:" + line);
                 String data[] = line.split(",");
                 if(data[0] == date && data[1] == time){
                     alert = new Alert(data[0], data[1], data[2], data[3]);
                     return alert;
                 }
-
             }
-            scnr.close();
         }
         catch (Exception e){
             e.printStackTrace();
