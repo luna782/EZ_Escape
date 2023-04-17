@@ -24,10 +24,10 @@ public class Screen2ClearController extends Activity implements View.OnClickList
 
     public Screen2ClearController(AddNewAlertActivity addNewAlertActivity){
             this.addNewAlertActivity = addNewAlertActivity;
-            date = findViewById(R.id.editTextDate);
-            time = findViewById(R.id.editTextTime);
-            sender = findViewById(R.id.editTextTextPersonName);
-            message = findViewById(R.id.editTextTextPersonName2);
+            date = addNewAlertActivity.findViewById(R.id.editTextDate);
+            time = addNewAlertActivity.findViewById(R.id.editTextTime);
+            sender = addNewAlertActivity.findViewById(R.id.editTextTextPersonName);
+            message = addNewAlertActivity.findViewById(R.id.editTextTextPersonName2);
 
     }
     @Override
