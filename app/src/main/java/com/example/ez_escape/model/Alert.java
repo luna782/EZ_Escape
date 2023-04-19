@@ -59,11 +59,13 @@ public class Alert {
             e.printStackTrace();
         }
 
+
+
     }
 
     /**
      * READS in alerts.csv,
-     * reads line by line searching for a matching date and time
+     * reads line by line searching for a matching date (get alerts for a specific date)
      * and returns the alert
      *
      * Format of alerts.csv:
@@ -71,7 +73,7 @@ public class Alert {
      *
      * @return
      */
-    public Alert getAlert(String date, String time, AddNewAlertActivity addNewAlertActivity) throws IOException {
+    public Alert getAlert(String date, AddNewAlertActivity addNewAlertActivity) throws IOException {
         String fileName = "alerts.csv";
 
 //        File readFrom = new File(path, fileName);
@@ -92,7 +94,7 @@ public class Alert {
                 sb.append(line);
                 System.out.println("Line Read in:" + line);
                 String data[] = line.split(",");
-                if(data[0] == date && data[1] == time){
+                if(data[0].equals(date)){
                     alert = new Alert(data[0], data[1], data[2], data[3]);
                     br.close();
                     isr.close();
