@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Alert {
@@ -59,19 +60,21 @@ public class Alert {
             e.printStackTrace();
         }
 
+
+
     }
 
     /**
      * READS in alerts.csv,
-     * reads line by line searching for a matching date and time
-     * and returns the alert
+     * reads line by line searching for a matching date (get alerts for a specific date)
+     * and adds that alert to an arraylist then returns that array list after reading all lines in the file
      *
      * Format of alerts.csv:
      * date,time,sender,message
      *
      * @return
      */
-    public Alert getAlert(String date, String time, AddNewAlertActivity addNewAlertActivity) throws IOException {
+    public ArrayList<Alert> getAlert(String date, AddNewAlertActivity addNewAlertActivity) throws IOException {
         String fileName = "alerts.csv";
 
 //        File readFrom = new File(path, fileName);
@@ -80,6 +83,8 @@ public class Alert {
         FileInputStream fis = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
+
+        ArrayList<Alert> arrAlerts = new ArrayList<>();
 
         try{
             fis = new FileInputStream(file);
@@ -92,14 +97,15 @@ public class Alert {
                 sb.append(line);
                 System.out.println("Line Read in:" + line);
                 String data[] = line.split(",");
-                if(data[0] == date && data[1] == time){
+                if(data[0].equals(date)){
                     alert = new Alert(data[0], data[1], data[2], data[3]);
-                    br.close();
-                    isr.close();
-                    fis.close();
-                    return alert;
+                    arrAlerts.add(alert);
                 }
             }
+            br.close();
+            isr.close();
+            fis.close();
+            return arrAlerts;
         }
         catch (Exception e){
             e.printStackTrace();
@@ -108,10 +114,6 @@ public class Alert {
             fis.close();
             return null;
         }
-        br.close();
-        isr.close();
-        fis.close();
-        return null;
 
     }
 
