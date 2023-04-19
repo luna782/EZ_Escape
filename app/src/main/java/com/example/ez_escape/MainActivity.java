@@ -15,15 +15,15 @@ import java.util.Scanner;
 
 public class MainActivity extends AppCompatActivity {
 
-    EditText inputButton;
-    private String userInput;
+    EditText passwordInputButton;
+    private String userPasswordInput;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         //get the input that the
-        inputButton = findViewById(R.id.editTextTextPassword);
+        passwordInputButton = findViewById(R.id.editTextTextPassword);
 
 
         //read from the password file
@@ -42,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String getUserInput(){
-        userInput = String.valueOf(inputButton.getText());
-        return this.userInput;
+    public String getUserPasswordInput(){
+        userPasswordInput = String.valueOf(passwordInputButton.getText());
+        return this.userPasswordInput;
     }
 }
