@@ -29,7 +29,7 @@ public class MainActivityController implements View.OnClickListener{
     public void onClick(View view ) {
 
         //Only logic for the onclick method if statement; Implement actual function calls later for getting text
-        if (password.equals(mainActivity.getUserInput())) {
+        if (password.equals(mainActivity.getUserPasswordInput())) {
             //Change Activity to Screen 2
 //            Toast t = Toast.makeText(view.getContext(), "Password match", Toast.LENGTH_SHORT);
 //            t.show();

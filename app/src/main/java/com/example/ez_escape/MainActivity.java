@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    public String getUserInput(){
+    public String getUserPasswordInput(){
         userInput = String.valueOf(inputButton.getText());
         return this.userInput;
     }
