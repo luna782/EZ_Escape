@@ -5,6 +5,7 @@ import android.renderscript.ScriptGroup;
 import android.text.InputType;
 
 import com.example.ez_escape.AddNewAlertActivity;
+import com.example.ez_escape.ViewAlertActivity;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -80,6 +81,50 @@ public class Alert {
 //        File readFrom = new File(path, fileName);
         Alert alert = null;
         File file = new File(addNewAlertActivity.getFilesDir(), fileName);
+        FileInputStream fis = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
+
+        ArrayList<Alert> arrAlerts = new ArrayList<>();
+
+        try{
+            fis = new FileInputStream(file);
+            isr = new InputStreamReader(fis);
+            br = new BufferedReader(isr);
+
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while((line = br.readLine()) != null ){
+                sb.append(line);
+                System.out.println("Line Read in:" + line);
+                String data[] = line.split(",");
+                if(data[0].equals(date)){
+                    alert = new Alert(data[0], data[1], data[2], data[3]);
+                    arrAlerts.add(alert);
+                }
+            }
+            br.close();
+            isr.close();
+            fis.close();
+            return arrAlerts;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            br.close();
+            isr.close();
+            fis.close();
+            return null;
+        }
+
+    }
+
+    //used for when ViewAlertActivity needs to read the alerts.csv to get all of the alerts
+    public ArrayList<Alert> getAlert(String date, ViewAlertActivity viewAlertActivity) throws IOException {
+        String fileName = "alerts.csv";
+
+//        File readFrom = new File(path, fileName);
+        Alert alert = null;
+        File file = new File(viewAlertActivity.getFilesDir(), fileName);
         FileInputStream fis = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
