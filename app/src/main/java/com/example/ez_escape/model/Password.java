@@ -8,10 +8,14 @@ import com.example.ez_escape.SettingsActivity;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 
 
@@ -20,8 +24,6 @@ import java.util.ArrayList;
  * password.csv should only contain one line of data being the user's password
  */
 public class Password {
-
-
 
 
     //****** There are 2 versions of the addNewPassword() and readUserPassword() (method overload)
@@ -110,10 +112,8 @@ public class Password {
         }
         catch (Exception e){
             e.printStackTrace();
-            br.close();
-            isr.close();
-            fis.close();
-            return null;
+            this.addNewPassword(settingsActivity, "");
+            return "";
         }
 
     }
@@ -134,6 +134,15 @@ public class Password {
         FileInputStream fis = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
+        //Path path = Files.createTempFile("password", ".csv");
+        //if (!Files.exists(path)) {
+
+        /*try {
+            file = new File(mainActivity.getFilesDir(), fileName);
+        } catch (FileNotFoundException e) {
+            this.addNewPassword(mainActivity, "");
+            return "";
+        }*/
 
 
         try{
@@ -156,10 +165,9 @@ public class Password {
         }
         catch (Exception e){
             e.printStackTrace();
-            br.close();
-            isr.close();
-            fis.close();
-            return null;
+            this.addNewPassword(mainActivity, "");
+            return "";
+            //return null;
         }
 
     }
