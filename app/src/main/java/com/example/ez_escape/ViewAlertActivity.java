@@ -15,8 +15,6 @@ public class ViewAlertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_calendar);
 
-        Button viewAlert = findViewById(R.id.view_alert_button);
-        viewAlert.setOnClickListener(new Screen3ViewAlertsController(this));
 
 
     }
