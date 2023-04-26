@@ -32,8 +32,10 @@ public class MainActivity extends AppCompatActivity {
         //otherwise, the string returned is the user's password
         Password passwordInstance = new Password();
         String password = "";
+
         try {
             password = passwordInstance.readUserPassword(this);
+            System.out.println("This is password return value " + password);
         } catch (IOException e) {
             System.out.println("ERROR: could not read the user password");
             if(password == null){
