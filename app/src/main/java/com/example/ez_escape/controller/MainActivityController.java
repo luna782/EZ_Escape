@@ -46,6 +46,7 @@ public class MainActivityController implements View.OnClickListener{
 
     }
 
+    // FIXME: remove this function if not used
     public void setPassword(String password) {
         this.password = password;
     }
