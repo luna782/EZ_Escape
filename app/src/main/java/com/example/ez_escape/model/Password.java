@@ -22,8 +22,6 @@ import java.util.ArrayList;
 public class Password {
 
 
-
-
     //****** There are 2 versions of the addNewPassword() and readUserPassword() (method overload)
     // for when a password needs to be read in MainActivity or read/written in SettingsActivity
 

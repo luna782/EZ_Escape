@@ -58,21 +58,21 @@
                 android:layout_height="fill_parent"
                 android:backgroundTint="@color/black"
                 android:text="View Schedule"
-                android:weight="1" />
+               />
             <Button
                 android:id="@+id/new_alert_button"
                 android:layout_width="137.3dp"
                 android:layout_height="fill_parent"
                 android:backgroundTint="@color/black"
                 android:text="New Alert"
-                android:weight="1" />
+              />
             <Button
                 android:id="@+id/settings_button"
                 android:layout_width="137.3dp"
                 android:layout_height="fill_parent"
                 android:backgroundTint="@color/black"
                 android:text="Settings"
-                android:weight="1" />
+                 />
         </LinearLayout>
 
     </LinearLayout>
