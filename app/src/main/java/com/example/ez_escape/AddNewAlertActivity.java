@@ -33,7 +33,7 @@ public class AddNewAlertActivity extends AppCompatActivity {
 
         //testing writing and reading the alerts
         //first test
-//        String date = "05/2314";
+/*        String date = "05/2314";
 //        String time = "01:22:1";
 //        Alert newAlert = new Alert(date, time, "dude", "bob");
 //        newAlert.addAlert(this);
@@ -54,7 +54,7 @@ public class AddNewAlertActivity extends AppCompatActivity {
 //        } catch (IOException e) {
 //            throw new RuntimeException(e);
 //        }
-//        System.out.println(ret);
+//        System.out.println(ret);*/
 
 
     }

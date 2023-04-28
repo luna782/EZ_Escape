@@ -3,6 +3,7 @@ package com.example.ez_escape.controller;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.R;
@@ -13,6 +14,7 @@ import java.util.Set;
 
 public class SettingsSubmitNewPassword implements View.OnClickListener{
     private SettingsActivity settingsActivity;
+    private AddNewAlertActivity addNewAlertActivity;
     public SettingsSubmitNewPassword(SettingsActivity settingsActivity){
         setSettingsActivity(settingsActivity);
     }
@@ -20,12 +22,13 @@ public class SettingsSubmitNewPassword implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         EditText userInputEditText = settingsActivity.findViewById(R.id.new_password);
-
-        //handle bad input if possible
-//        if(userInput.getText().equals()){
-//
-//        }
         String userInput = String.valueOf(userInputEditText.getText());
+
+        if (addNewAlertActivity.isEmpty(userInputEditText)) {
+            Toast t = Toast.makeText(view.getContext(), "Invalid input: password cannot contain spaces or tabs.", Toast.LENGTH_SHORT);
+            t.show();
+            return;
+        }
 
         Password password = new Password();
         password.addNewPassword(settingsActivity, userInput);
