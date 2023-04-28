@@ -39,9 +39,8 @@
         </LinearLayout>
 
         <LinearLayout
-            android:layout_height="130dp"
+            android:layout_height="125dp"
             android:layout_width="match_parent"
-            android:marginTop="200dp"
             android:orientation="vertical">
         </LinearLayout>
 
