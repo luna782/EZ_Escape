@@ -69,15 +69,21 @@
       android:id="@+id/textView9"
       android:layout_width="wrap_content"
       android:layout_height="wrap_content"
+      android:layout_marginStart="30dp"
+      android:layout_marginTop="196dp"
+      android:layout_marginEnd="262dp"
+      android:layout_marginBottom="516dp"
       android:text="Current Password: "
-      tools:layout_editor_absoluteX="30dp"
-      tools:layout_editor_absoluteY="196dp" />
+      app:layout_constraintBottom_toBottomOf="parent"
+      app:layout_constraintEnd_toEndOf="parent"
+      app:layout_constraintStart_toStartOf="parent"
+      app:layout_constraintTop_toTopOf="parent" />
 
   <TextView
       android:id="@+id/current_password"
-      android:layout_width="120dp"
-      android:layout_height="22dp"
-      tools:layout_editor_absoluteX="216dp"
+      android:layout_width="212dp"
+      android:layout_height="43dp"
+      tools:layout_editor_absoluteX="178dp"
       tools:layout_editor_absoluteY="193dp" />
 
   <TextView

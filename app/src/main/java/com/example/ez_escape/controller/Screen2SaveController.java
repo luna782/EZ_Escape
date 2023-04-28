@@ -2,6 +2,7 @@ package com.example.ez_escape.controller;
 
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.R;
@@ -35,11 +36,11 @@ public class Screen2SaveController implements View.OnClickListener {
 
     @Override
     public void onClick(View view) {
-/*      I don't think the statements in this block are needed
         String inputDate = String.valueOf(date.getText());
         String inputTime = String.valueOf(time.getText());
         String inputSender = String.valueOf(sender.getText());
-        String inputMessage = String.valueOf(message.getText()); */
+        String inputMessage = String.valueOf(message.getText());
+
 
         // Check if any fields are empty (empty string or contains only whitespace).
         //      This means user forgot to enter info for one of them.
@@ -58,5 +59,36 @@ public class Screen2SaveController implements View.OnClickListener {
 
 
         //Alert newAlert = new Alert()
+
+
+        if(inputDate.equals("") || !addNewAlertActivity.isValid(date, "[0-1][0-9]/[0-3][0-9]")){
+            Toast t = Toast.makeText(view.getContext(), "Invalid input date. Either input is " +
+                    "empty or does not match format: MM/DD", Toast.LENGTH_SHORT);
+            t.show();
+            return;
+        }
+
+        else if(inputSender.equals("")){
+            Toast t = Toast.makeText(view.getContext(), "Invalid input for sender. Input is EMPTY", Toast.LENGTH_SHORT);
+            t.show();
+            return;
+        }
+        else if(inputMessage.equals("")){
+            Toast t = Toast.makeText(view.getContext(), "Invalid input for message. Input is EMPTY", Toast.LENGTH_SHORT);
+            t.show();
+            return;
+        }
+        else if(inputTime.equals("") || !addNewAlertActivity.isValid(time, "[0-2][0-9]:[0-5][0-9]")){
+            Toast t = Toast.makeText(view.getContext(), "Invalid input for time. Either input is " +
+                    "empty or does not match format: ##:## where its hour then minute", Toast.LENGTH_SHORT);
+            t.show();
+            return;
+
+        }
+
+        Alert alert = new Alert(inputDate, inputTime, inputSender, inputMessage);
+        alert.addAlert(addNewAlertActivity);
+        System.out.println("Save button added new alert");
+
     }
 }
