@@ -41,46 +41,30 @@ public class Screen2SaveController implements View.OnClickListener {
         String inputSender = String.valueOf(sender.getText());
         String inputMessage = String.valueOf(message.getText());
 
-
-        // Check if any fields are empty (empty string or contains only whitespace).
-        //      This means user forgot to enter info for one of them.
-        //      If so, show toast like "one or more fields incomplete" and return. This
-        //      will allow user to go back and fill in missing info without erasing everything else.
-        //<type code here>
-
-        // After this, also check if any input is invalid (incorrect format -- i.e., for date & time)
-        //      If so, show toast like "Invalid input for XXXX" and return.
-        //<type code here>
-
         //see MainActivityController.java > onClick() and see the if-else statement
         //note: if needed, access text in "date" with addNewAlertActivity.getUserInput(date)
 
-
-
-
-        //Alert newAlert = new Alert()
-
-
-        if(inputDate.equals("") || !addNewAlertActivity.isValid(date, "[0-1][0-9]/[0-3][0-9]")){
+        // Having "return" here will allow user to go back and fill in missing/incorrect info without having everything else erased.
+        if(addNewAlertActivity.isEmpty(date) || !addNewAlertActivity.isValid(date, "^(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])$")){
             Toast t = Toast.makeText(view.getContext(), "Invalid input date. Either input is " +
                     "empty or does not match format: MM/DD", Toast.LENGTH_SHORT);
             t.show();
             return;
         }
 
-        else if(inputSender.equals("")){
+        else if(addNewAlertActivity.isEmpty(sender)){
             Toast t = Toast.makeText(view.getContext(), "Invalid input for sender. Input is EMPTY", Toast.LENGTH_SHORT);
             t.show();
             return;
         }
-        else if(inputMessage.equals("")){
+        else if(addNewAlertActivity.isEmpty(message)){
             Toast t = Toast.makeText(view.getContext(), "Invalid input for message. Input is EMPTY", Toast.LENGTH_SHORT);
             t.show();
             return;
         }
-        else if(inputTime.equals("") || !addNewAlertActivity.isValid(time, "[0-2][0-9]:[0-5][0-9]")){
+        else if(addNewAlertActivity.isEmpty(time) || !addNewAlertActivity.isValid(time, "^(0?[0-9]|1[0-9]|2[0-4]):[0-5][0-9]$")){
             Toast t = Toast.makeText(view.getContext(), "Invalid input for time. Either input is " +
-                    "empty or does not match format: ##:## where its hour then minute", Toast.LENGTH_SHORT);
+                    "empty or does not match format: HH:MM", Toast.LENGTH_SHORT);
             t.show();
             return;
 
