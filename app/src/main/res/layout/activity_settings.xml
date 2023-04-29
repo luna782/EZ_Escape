@@ -102,7 +102,7 @@
           android:layout_width="137.3dp"
           android:layout_height="fill_parent"
           android:backgroundTint="@color/black"
-          android:text="View Schedule"
+          android:text="Calendar"
           />
       <Button
           android:id="@+id/new_alert_button"
