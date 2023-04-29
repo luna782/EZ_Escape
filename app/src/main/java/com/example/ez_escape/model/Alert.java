@@ -3,8 +3,10 @@ package com.example.ez_escape.model;
 import android.content.Context;
 import android.renderscript.ScriptGroup;
 import android.text.InputType;
+import android.widget.CalendarView;
 
 import com.example.ez_escape.AddNewAlertActivity;
+import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.ViewAlertActivity;
 
 import java.io.BufferedReader;
@@ -25,6 +27,13 @@ public class Alert {
     private String sender;
     private String message;
 
+    //Blank constructor used for tempChecks
+    public Alert(){
+        date = null;
+        time = null;
+        sender = null;
+        message = null;
+    }
 
     public Alert(String date, String time, String sender, String message){
         setDate(date);
@@ -110,16 +119,13 @@ public class Alert {
         }
         catch (Exception e){
             e.printStackTrace();
-            br.close();
-            isr.close();
-            fis.close();
             return null;
         }
 
     }
 
-    //used for when ViewAlertActivity needs to read the alerts.csv to get all of the alerts
-    public ArrayList<Alert> getAlert(String date, ViewAlertActivity viewAlertActivity) throws IOException {
+    //used for when CalendarActivity needs to read the alerts.csv to determine what days have alerts.
+    public ArrayList<Alert> getAlert(String date, CalendarActivity viewAlertActivity) throws IOException {
         String fileName = "alerts.csv";
 
 //        File readFrom = new File(path, fileName);
@@ -154,9 +160,6 @@ public class Alert {
         }
         catch (Exception e){
             e.printStackTrace();
-            br.close();
-            isr.close();
-            fis.close();
             return null;
         }
 
