@@ -89,7 +89,7 @@
         android:layout_marginTop="217dp"
         android:layout_marginEnd="338dp"
         android:layout_marginBottom="495dp"
-        android:text="Time"
+        android:text="Time\n HH:MM"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

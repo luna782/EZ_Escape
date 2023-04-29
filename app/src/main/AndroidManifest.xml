@@ -12,7 +12,7 @@
         android:theme="@style/Theme.EZ_Escape"
         tools:targetApi="31">
         <activity
-            android:name=".EditViewDeleteAlertActivity"
+            android:name=".EditDeleteAlertActivity"
             android:exported="false" />
         <activity
             android:name=".SettingsActivity"
