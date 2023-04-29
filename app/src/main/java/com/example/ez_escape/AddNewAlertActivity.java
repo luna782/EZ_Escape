@@ -2,6 +2,7 @@ package com.example.ez_escape;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,11 +27,15 @@ public class AddNewAlertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_alert);
 
+
+        //create alarm manager
+        AlarmManager alarmManager;
+
         Button clear_button = findViewById(R.id.clear_button);
         clear_button.setOnClickListener( new Screen2ClearController(this) );
 
         Button save_button = findViewById(R.id.save_button);
-        save_button.setOnClickListener(new Screen2SaveController(this));
+        save_button.setOnClickListener(new Screen2SaveController(this, alarmManager));
 
         EditText dateInputButton = findViewById(R.id.editTextDate);
 
@@ -72,6 +77,7 @@ public class AddNewAlertActivity extends AppCompatActivity {
 //            throw new RuntimeException(e);
 //        }
 //        System.out.println(ret);*/
+
 
 
     }

@@ -1,5 +1,6 @@
 package com.example.ez_escape.controller;
 
+import android.app.AlarmManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -23,6 +24,18 @@ public class Screen2SaveController implements View.OnClickListener {
     private EditText sender;
     private EditText message;
     private AddNewAlertActivity addNewAlertActivity;
+    private AlarmManager alarmManager;
+
+    public Screen2SaveController(AddNewAlertActivity addNewAlertActivity, AlarmManager alarmManager){
+        this.alarmManager = alarmManager;
+        this.addNewAlertActivity = addNewAlertActivity;
+        date = addNewAlertActivity.findViewById(R.id.editTextDate);
+        time = addNewAlertActivity.findViewById(R.id.editTextTime);
+        sender = addNewAlertActivity.findViewById(R.id.editTextTextPersonName);
+        message = addNewAlertActivity.findViewById(R.id.editTextTextPersonName2);
+
+    }
+
 
     public Screen2SaveController(AddNewAlertActivity addNewAlertActivity){
         this.addNewAlertActivity = addNewAlertActivity;
@@ -69,6 +82,7 @@ public class Screen2SaveController implements View.OnClickListener {
             return;
 
         }
+
 
         Alert alert = new Alert(inputDate, inputTime, inputSender, inputMessage);
         alert.addAlert(addNewAlertActivity);
