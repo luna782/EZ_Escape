@@ -6,8 +6,11 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.example.ez_escape.controller.CalendarController;
+import com.example.ez_escape.controller.NewAlertController;
 import com.example.ez_escape.controller.Screen2ClearController;
 import com.example.ez_escape.controller.Screen2SaveController;
+import com.example.ez_escape.controller.SettingsController;
 import com.example.ez_escape.model.Alert;
 
 import java.io.IOException;
@@ -30,6 +33,20 @@ public class AddNewAlertActivity extends AppCompatActivity {
         save_button.setOnClickListener(new Screen2SaveController(this));
 
         EditText dateInputButton = findViewById(R.id.editTextDate);
+
+        //Button that sends user to newAlertActivity Screen
+        Button newAlert = findViewById(R.id.new_alert_button);
+        newAlert.setOnClickListener(new NewAlertController(this) );
+
+        //Button that sends user to Settings Screen
+        Button settingsButton = findViewById(R.id.settings_button);
+        settingsButton.setOnClickListener(new SettingsController(this) );
+
+        //Button that sends user to Calendar Screen
+        Button calendar_button = findViewById(R.id.view_scheduele_button);
+        calendar_button.setOnClickListener(new CalendarController(this) );
+
+
 
         //testing writing and reading the alerts
         //first test

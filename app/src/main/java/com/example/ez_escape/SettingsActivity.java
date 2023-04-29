@@ -7,6 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.example.ez_escape.controller.CalendarController;
+import com.example.ez_escape.controller.NewAlertController;
+import com.example.ez_escape.controller.Screen3ViewAlertsController;
 import com.example.ez_escape.controller.SettingsController;
 import com.example.ez_escape.controller.SettingsSubmitNewPassword;
 import com.example.ez_escape.model.Password;
@@ -35,6 +38,19 @@ public class SettingsActivity extends AppCompatActivity {
         }
         Button submitNewPasswordButton = findViewById(R.id.submit_new_password);
         submitNewPasswordButton.setOnClickListener( new SettingsSubmitNewPassword(this) );
+
+        //Button that sends user to viewAlertActivity Screen
+        Button calendar = findViewById(R.id.view_schedule_button);
+        calendar.setOnClickListener(new CalendarController(this) );
+
+
+        //Button that sends user to newAlertActivity Screen
+        Button newAlert = findViewById(R.id.new_alert_button);
+        newAlert.setOnClickListener(new NewAlertController(this) );
+
+        //Button that sends user to newAlertActivity Screen
+        Button settingsButton = findViewById(R.id.settings_button);
+        settingsButton.setOnClickListener(new SettingsController(this) );
 
     }
 }

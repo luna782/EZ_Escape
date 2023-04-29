@@ -4,53 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CalendarActivity">
+    tools:context=".ViewAlertActivity">
 
 
     <LinearLayout
-        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:contentDescription="Holds all file"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:gravity="bottom"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:layout_width="match_parent"
+            android:id="@+id/title"
+            android:layout_width="100dp"
             android:layout_height="50dp"
-            android:gravity="center"
-            android:text="Calendar Screen"/>
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginEnd="296dp"
+            android:text="Month Day" />
 
-        <CalendarView
-            android:id="@+id/calendar"
-            android:layout_width="match_parent"
-            android:layout_height="405dp"/>
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_width="394dp"
+            android:layout_height="520dp"
+            android:layout_marginStart="10dp"/>
+
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="75dp"
-            android:gravity="center"
+            android:layout_height="85dp"
+            android:gravity="bottom"
             android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/view_alert_button"
-                android:layout_width="150dp"
-                android:layout_height="50dp"
-                android:text="View Alerts"
-                />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_height="130dp"
-            android:layout_width="match_parent"
-            android:orientation="vertical">
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_height="85dp"
-            android:layout_width="match_parent"
-            android:gravity="bottom"
-            android:orientation="horizontal"
-            >
 
             <Button
                 android:id="@+id/view_schedule_button"
@@ -75,8 +63,5 @@
         </LinearLayout>
 
     </LinearLayout>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
