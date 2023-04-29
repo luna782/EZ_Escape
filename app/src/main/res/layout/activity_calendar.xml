@@ -34,13 +34,13 @@
                 android:id="@+id/view_alert_button"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:text="Check alerts"
+                android:text="View Alerts"
                 />
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_height="125dp"
+            android:layout_height="130dp"
             android:layout_width="match_parent"
             android:orientation="vertical">
         </LinearLayout>

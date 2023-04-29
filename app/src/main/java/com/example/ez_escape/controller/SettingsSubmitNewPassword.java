@@ -30,6 +30,9 @@ public class SettingsSubmitNewPassword implements View.OnClickListener{
 
         Password password = new Password();
         password.addNewPassword(settingsActivity, userInput);
+
+        Toast t = Toast.makeText(view.getContext(), "Password successfully changed.", Toast.LENGTH_SHORT);
+        t.show();
     }
 
     public SettingsActivity getSettingsActivity() {

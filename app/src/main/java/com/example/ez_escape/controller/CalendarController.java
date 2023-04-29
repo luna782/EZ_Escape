@@ -7,6 +7,8 @@ import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.SettingsActivity;
 
+import java.util.Calendar;
+
 public class CalendarController implements View.OnClickListener{
     private CalendarActivity calendarActivity;
     private boolean clickedFromCalendarActivity = false;
@@ -43,15 +45,15 @@ public class CalendarController implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         if(clickedFromAddNewAlertActivity == true){
-            Intent intent = new Intent(addNewAlertActivity, AddNewAlertActivity.class );
+            Intent intent = new Intent(addNewAlertActivity, CalendarActivity.class );
             addNewAlertActivity.startActivity(intent);
         }
         else if(clickedFromCalendarActivity == true){
-            Intent intent = new Intent(calendarActivity, AddNewAlertActivity.class );
+            Intent intent = new Intent(calendarActivity, CalendarActivity.class );
             calendarActivity.startActivity(intent);
         }
         else if(clickedFromSettingsActivity == true){
-            Intent intent = new Intent(settingsActivity, AddNewAlertActivity.class );
+            Intent intent = new Intent(settingsActivity, CalendarActivity.class );
             settingsActivity.startActivity(intent);
         }
     }
