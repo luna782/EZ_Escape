@@ -34,7 +34,7 @@
                 android:id="@+id/view_alert_button"
                 android:layout_width="150dp"
                 android:layout_height="50dp"
-                android:text="Check alerts"
+                android:text="View Alerts"
                 />
 
         </LinearLayout>

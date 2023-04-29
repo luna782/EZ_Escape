@@ -72,6 +72,10 @@ public class Screen2SaveController implements View.OnClickListener {
 
         Alert alert = new Alert(inputDate, inputTime, inputSender, inputMessage);
         alert.addAlert(addNewAlertActivity);
+
+        Toast t = Toast.makeText(view.getContext(), "Alert added.", Toast.LENGTH_SHORT);
+        t.show();
+
         System.out.println("Save button added new alert");
 
     }
