@@ -99,25 +99,24 @@
 
       <Button
           android:id="@+id/view_schedule_button"
-          android:layout_width="137.3dp"
+          android:layout_width="131dp"
           android:layout_height="fill_parent"
           android:backgroundTint="@color/black"
-          android:text="Calendar"
-          />
+          android:text="Calendar" />
+
       <Button
           android:id="@+id/new_alert_button"
-          android:layout_width="137.3dp"
+          android:layout_width="133dp"
           android:layout_height="fill_parent"
           android:backgroundTint="@color/black"
-          android:text="New Alert"
-          />
+          android:text="New Alert" />
+
       <Button
           android:id="@+id/settings_button"
-          android:layout_width="137.3dp"
+          android:layout_width="131dp"
           android:layout_height="fill_parent"
           android:backgroundTint="@color/black"
-          android:text="Settings"
-          />
+          android:text="Settings" />
     </LinearLayout>
 
   </LinearLayout>
