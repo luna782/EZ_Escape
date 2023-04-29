@@ -41,18 +41,10 @@ public class Screen2SaveController implements View.OnClickListener {
         String inputSender = String.valueOf(sender.getText());
         String inputMessage = String.valueOf(message.getText());
 
-        // Having "return" here will allow user to go back and fill in missing/incorrect info without having everything else erased.
-        if (addNewAlertActivity.isEmpty(date) || addNewAlertActivity.isEmpty(time)
-                || addNewAlertActivity.isEmpty(sender) || addNewAlertActivity.isEmpty(message)) {
-            Toast t = Toast.makeText(view.getContext(), "One or more fields is empty.", Toast.LENGTH_SHORT);
-            t.show();
-            return;
-        }
-
         //see MainActivityController.java > onClick() and see the if-else statement
         //note: if needed, access text in "date" with addNewAlertActivity.getUserInput(date)
 
-
+        // Having "return" here will allow user to go back and fill in missing/incorrect info without having everything else erased.
         if(addNewAlertActivity.isEmpty(date) || !addNewAlertActivity.isValid(date, "^(0[1-9]|1[012])/(0[1-9]|[12][0-9]|3[01])$")){
             Toast t = Toast.makeText(view.getContext(), "Invalid input date. Either input is " +
                     "empty or does not match format: MM/DD", Toast.LENGTH_SHORT);
