@@ -1,8 +1,12 @@
 package com.example.ez_escape;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -112,6 +116,14 @@ public class AddNewAlertActivity extends AppCompatActivity {
             return true;
         else
             return false;
+    }
+    public void startAlarm(long alarmMillis){
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, alarmMillis, pendingIntent);
     }
 
 }
