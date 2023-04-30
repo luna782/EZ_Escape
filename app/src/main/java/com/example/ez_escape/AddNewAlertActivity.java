@@ -39,7 +39,7 @@ public class AddNewAlertActivity extends AppCompatActivity {
         clear_button.setOnClickListener( new Screen2ClearController(this) );
 
         Button save_button = findViewById(R.id.save_button);
-        save_button.setOnClickListener(new Screen2SaveController(this, alarmManager));
+        save_button.setOnClickListener(new Screen2SaveController(this));
 
         EditText dateInputButton = findViewById(R.id.editTextDate);
 
