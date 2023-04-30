@@ -5,12 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.ez_escape.R;
-import com.example.ez_escape.controller.EditDeleteAlertController;
 
 import java.util.ArrayList;
 
@@ -31,9 +28,6 @@ public class AlertViewsAdaptor extends ArrayAdapter<AlertViews> {
         TextView textView = convertView.findViewById(R.id.text);
 
         textView.setText( getItem(position).getTextView() );
-
-        ImageButton imageButton = convertView.findViewById(R.id.imageButton_row);
-        imageButton.setOnClickListener( new EditDeleteAlertController() );
 
         return convertView;
     }

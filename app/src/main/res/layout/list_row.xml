@@ -15,13 +15,4 @@
         tools:layout_editor_absoluteX="4dp"
         tools:layout_editor_absoluteY="16dp" />
 
-    <ImageButton
-        android:id="@+id/imageButton_row"
-        android:layout_width="66dp"
-        android:layout_height="48dp"
-        android:scaleType="fitXY"
-        app:srcCompat="@drawable/pencil_icon"
-        tools:layout_editor_absoluteX="329dp"
-        tools:layout_editor_absoluteY="16dp" />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
