@@ -6,6 +6,7 @@ import android.view.View;
 import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.SettingsActivity;
+import com.example.ez_escape.ViewAlertActivity;
 
 /**
  * NewAlertController responsible for starting the AddNewAlertActivity
@@ -20,28 +21,45 @@ public class NewAlertController implements View.OnClickListener{
     private AddNewAlertActivity addNewAlertActivity;
     private boolean clickedFromAddNewAlertActivity = false;
 
+    private ViewAlertActivity viewAlertActivity;
+    private boolean clickedFromViewAlertActivity = false;
 
 
 
-    //3 different constructors for when from the 3 different screens/activities a user will
+
+    //4 different constructors for when from the 4 different screens/activities a user will
     //press on the new alert button to go to the new alert screen
+
+    public NewAlertController(ViewAlertActivity viewAlertActivity){
+        setViewAlertActivity(viewAlertActivity);
+        clickedFromCalendarActivity = false;
+        clickedFromSettingsActivity = false;
+        clickedFromAddNewAlertActivity = false;
+        clickedFromViewAlertActivity = true;
+    }
     public NewAlertController(CalendarActivity calendarActivity){
         setCalendarActivity(calendarActivity);
         clickedFromCalendarActivity = true;
         clickedFromSettingsActivity = false;
         clickedFromAddNewAlertActivity = false;
+        clickedFromViewAlertActivity = false;
+
     }
     public NewAlertController(SettingsActivity settingsActivity){
         setSettingsActivity(settingsActivity);
         clickedFromAddNewAlertActivity = false;
         clickedFromCalendarActivity = false;
         clickedFromSettingsActivity = true;
+        clickedFromViewAlertActivity = false;
+
     }
     public NewAlertController(AddNewAlertActivity addNewAlertActivity){
         setAddNewAlertActivity(addNewAlertActivity);
         clickedFromAddNewAlertActivity = true;
         clickedFromCalendarActivity = false;
         clickedFromSettingsActivity = false;
+        clickedFromViewAlertActivity = false;
+
     }
 
     @Override
@@ -57,6 +75,10 @@ public class NewAlertController implements View.OnClickListener{
         else if(clickedFromSettingsActivity == true){
             Intent intent = new Intent(settingsActivity, AddNewAlertActivity.class );
             settingsActivity.startActivity(intent);
+        }
+        else if(clickedFromViewAlertActivity == true){
+            Intent intent = new Intent(viewAlertActivity, AddNewAlertActivity.class );
+            viewAlertActivity.startActivity(intent);
         }
     }
 
@@ -82,5 +104,13 @@ public class NewAlertController implements View.OnClickListener{
 
     public void setSettingsActivity(SettingsActivity settingsActivity) {
         this.settingsActivity = settingsActivity;
+    }
+
+    public ViewAlertActivity getViewAlertActivity() {
+        return viewAlertActivity;
+    }
+
+    public void setViewAlertActivity(ViewAlertActivity viewAlertActivity) {
+        this.viewAlertActivity = viewAlertActivity;
     }
 }

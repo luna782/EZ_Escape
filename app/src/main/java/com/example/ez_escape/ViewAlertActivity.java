@@ -7,8 +7,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ez_escape.controller.CalendarController;
 import com.example.ez_escape.controller.NewAlertController;
 import com.example.ez_escape.controller.Screen3ViewAlertsController;
+import com.example.ez_escape.controller.SettingsController;
 import com.example.ez_escape.model.Alert;
 import com.example.ez_escape.model.AlertViews;
 import com.example.ez_escape.model.AlertViewsAdaptor;
@@ -23,6 +25,16 @@ public class ViewAlertActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //Change activity!
         setContentView(R.layout.activity_view_alert);
+
+        Button calendar_button = findViewById(R.id.view_schedule_button);
+        calendar_button.setOnClickListener( new CalendarController(this) );
+
+        Button newAlert_button = findViewById(R.id.new_alert_button);
+        newAlert_button.setOnClickListener( new NewAlertController(this) );
+
+        Button settings_button = findViewById(R.id.settings_button);
+        settings_button.setOnClickListener( new SettingsController(this));
+
 
         //UNCOMMENT BELOW AFTER IMPLEMENTING PASSING THE DATE THROUGH INTENT
         String date = "";

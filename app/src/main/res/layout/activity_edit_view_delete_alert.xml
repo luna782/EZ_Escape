@@ -46,7 +46,7 @@
         android:layout_marginTop="60dp"
         android:layout_marginEnd="163dp"
         android:layout_marginBottom="644dp"
-        android:text="Edit Alert"
+        android:text="Edit/Delete Alert"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
