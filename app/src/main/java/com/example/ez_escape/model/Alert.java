@@ -56,12 +56,12 @@ public class Alert {
         String fileName = "alerts.csv";
         File file = new File(addNewAlertActivity.getFilesDir(), fileName);
         try{
-            FileOutputStream fos = new FileOutputStream(file);
+            FileOutputStream fos = new FileOutputStream(file, true);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
 //            FileWriter writer = new FileWriter( file )
-            String data = getDate() + "," + getTime() + "," + getSender() + "," + getMessage();
+            String data = getDate() + "," + getTime() + "," + getSender() + "," + getMessage() + "\n";
 //            fos.write(data.getBytes());
-            osw.write(data);
+            osw.append(data);
             osw.flush();
             osw.close();
             fos.close();
