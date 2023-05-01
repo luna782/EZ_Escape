@@ -35,10 +35,12 @@ public class NotificationHelper extends ContextWrapper {
         String sender = arr[0];
         String message = arr[1];
         System.out.println(sender + "/" + message);
-        return new NotificationCompat.Builder(getApplicationContext(), channelID)
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelID)
+                .setSmallIcon(R.drawable.messageicon)
                 .setContentTitle(sender)
                 .setContentText(message)
-                .setSmallIcon(R.drawable.messageicon);
+                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
+        return builder;
     }
 }
 
