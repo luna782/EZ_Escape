@@ -1,5 +1,6 @@
 package com.example.ez_escape;
 
+import static android.app.PendingIntent.FLAG_IMMUTABLE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
 import static com.example.ez_escape.model.GlobalAlarmData.getGlobalAlarmData;
@@ -10,6 +11,7 @@ import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 
@@ -120,7 +122,7 @@ public class AddNewAlertActivity extends AppCompatActivity {
             return false;
     }
     public void startAlarm(long alarmMillis){
-
+        System.out.println("Inside of startAlarm");
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
 
@@ -129,9 +131,16 @@ public class AddNewAlertActivity extends AppCompatActivity {
         String data = getGlobalAlarmData().getData().get(lastIndex);
         intent.putExtra("data", data);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, FLAG_IMMUTABLE);
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmMillis, pendingIntent);
 
-        alarmManager.set(AlarmManager.RTC_WAKEUP, alarmMillis, pendingIntent);
+        boolean alarmUp = (PendingIntent.getBroadcast(this, 0,
+                new Intent(this, AlertReceiver.class),
+                FLAG_IMMUTABLE) != null);
+
+        if (alarmUp) {
+            Log.d("myTag", "Alarm is already active");
+        }
     }
 
 }

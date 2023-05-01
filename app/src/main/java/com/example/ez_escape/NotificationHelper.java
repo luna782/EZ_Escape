@@ -30,6 +30,7 @@ public class NotificationHelper extends ContextWrapper {
     }
 
     public NotificationCompat.Builder getChannelNotification(String data) {
+        System.out.println("Inside of getChannelNotification()");
         String arr[] = data.split(",");
         String sender = arr[0];
         String message = arr[1];
