@@ -34,6 +34,7 @@ public class NotificationHelper extends ContextWrapper {
         String arr[] = data.split(",");
         String sender = arr[0];
         String message = arr[1];
+        System.out.println(sender + "/" + message);
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
                 .setContentTitle(sender)
                 .setContentText(message)

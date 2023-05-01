@@ -4,16 +4,22 @@ import static com.example.ez_escape.model.GlobalAlarmData.getGlobalAlarmData;
 
 import android.app.AlarmManager;
 import android.view.View;
+import android.widget.CalendarView;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.R;
 import com.example.ez_escape.model.Alert;
+import com.example.ez_escape.model.Day;
 import com.example.ez_escape.model.GlobalAlarmData;
+import com.example.ez_escape.model.Month;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * Description of class.
@@ -31,6 +37,8 @@ public class Screen2SaveController implements View.OnClickListener {
     private EditText message;
     private AddNewAlertActivity addNewAlertActivity;
     private AlarmManager alarmManager;
+
+    private static CalendarView getDay;
 
     public Screen2SaveController(AddNewAlertActivity addNewAlertActivity, AlarmManager alarmManager){
         this.alarmManager = alarmManager;
@@ -100,7 +108,7 @@ public class Screen2SaveController implements View.OnClickListener {
         day = Integer.parseInt(dateSplit[1]);
         month = Integer.parseInt(dateSplit[0]);
 
-        makeAlarm(hour,day, month, min, inputMessage, inputSender);
+        makeAlarm(hour,day, month, min, inputSender, inputMessage);
 
         Alert alert = new Alert(inputDate, inputTime, inputSender, inputMessage);
         alert.addAlert(addNewAlertActivity);
@@ -115,7 +123,11 @@ public class Screen2SaveController implements View.OnClickListener {
         Calendar now = Calendar.getInstance();
         Calendar alarm = Calendar.getInstance();
 
-        int difference; //the difference between today the day for the alarm
+        long difference = 0; //the difference between today the day for the alarm
+        long alarmMillis = 0;
+        System.out.println(month);
+        System.out.println(day);
+        System.out.println(hour);
 
         alarm.set(Calendar.MONTH, month);
         alarm.set(Calendar.DATE, day);
@@ -123,23 +135,54 @@ public class Screen2SaveController implements View.OnClickListener {
         alarm.set(Calendar.MINUTE, minute);
         alarm.set(Calendar.SECOND, 0);
 
-        long alarmMillis = alarm.getTimeInMillis();
-        if (day != now.get(Calendar.DATE)){
-            difference = day - now.get(Calendar.DATE);
-            alarmMillis += (difference * 86400000L);
+        long dayMil = getDay.getDate();
+
+        System.out.println(alarmMillis);
+        Date tester = new Date(dayMil);
+        String line = tester.toString();
+        String lineSplit[] = line.split(" ");
+        String year = lineSplit[5];
+        String inDate = lineSplit[5] + "/" + Month.monthValue(Integer.toString(month)) + "/" + Day.dayValue(Integer.toString(day)) + " " + Integer.toString(hour) + ":" + Integer.toString(minute) +":00";
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+        Date curdate = null;
+        try {
+            curdate = sdf.parse(inDate);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
         }
+        long curMil = curdate.getTime();
+
+        difference = curMil - dayMil;
+        alarmMillis += (difference * 86400000L);
+
         GlobalAlarmData globalAlarmData = getGlobalAlarmData();
         ArrayList<String> data = globalAlarmData.getData();
         String d = inputSender + "," + inputMessage;
+        System.out.println("Data before passing intent is " + d);
         data.add(d);
 
-        addNewAlertActivity.startAlarm(alarmMillis);
+        /*
+        System.out.println(difference);
+
+        System.out.println(alarmMillis);
+        tester = new Date(alarmMillis);
+        System.out.println(tester.toString());
+
+        System.out.println(curMil);
+        tester = new Date(curMil);
+        System.out.println(tester.toString());
+         */
+
+        addNewAlertActivity.startAlarm(curMil, d);
 
 
 
     }
 
-
+    public static void setGetDay(CalendarView in) {
+        Screen2SaveController.getDay = in;
+    }
 
 }
 

@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -121,22 +122,31 @@ public class AddNewAlertActivity extends AppCompatActivity {
         else
             return false;
     }
-    public void startAlarm(long alarmMillis){
+    public void startAlarm(long alarmMillis, String messageContent){
         System.out.println("Inside of startAlarm");
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
-
+        /*
+        //Pauls stuff
+        AlertReceiver receive = new AlertReceiver();
+        //Imported intent filter
+        IntentFilter filter = new IntentFilter();
+        registerReceiver(receive, filter);
+        */
         //most recent alarm data would be in the last index of the data ArrayList
         int lastIndex = getGlobalAlarmData().getData().size() - 1;
         String data = getGlobalAlarmData().getData().get(lastIndex);
-        intent.putExtra("data", data);
+        intent.putExtra("data", messageContent);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 8, intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmMillis, pendingIntent);
 
-        boolean alarmUp = (PendingIntent.getBroadcast(this, 0,
+        AlarmManager.AlarmClockInfo alarmClockInfo = new AlarmManager.AlarmClockInfo(alarmMillis, pendingIntent);
+        alarmManager.setAlarmClock(alarmClockInfo, pendingIntent);
+
+        boolean alarmUp = (PendingIntent.getBroadcast(this, 8,
                 new Intent(this, AlertReceiver.class),
-                FLAG_IMMUTABLE) != null);
+                PendingIntent.FLAG_IMMUTABLE) != null);
 
         if (alarmUp) {
             Log.d("myTag", "Alarm is already active");

@@ -9,6 +9,7 @@ import android.widget.CalendarView;
 
 import com.example.ez_escape.controller.CalendarController;
 import com.example.ez_escape.controller.NewAlertController;
+import com.example.ez_escape.controller.Screen2SaveController;
 import com.example.ez_escape.controller.Screen3ViewAlertsController;
 import com.example.ez_escape.controller.SettingsController;
 import com.example.ez_escape.model.Calendar;
@@ -33,6 +34,7 @@ public class CalendarActivity extends AppCompatActivity {
         CalendarView calendarDisplay = (CalendarView) findViewById(R.id.calendar);
         long millisecondDate = calendarDisplay.getDate();
         int date = (int) (millisecondDate / 31556952000L);
+        Screen2SaveController.setGetDay(calendarDisplay);
 
         calendarDisplay.setMinDate(31557952000L * ((long) date));
         calendarDisplay.setMaxDate(31556952000L * ((long) date + 1));

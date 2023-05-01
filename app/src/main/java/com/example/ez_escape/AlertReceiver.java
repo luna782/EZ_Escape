@@ -12,6 +12,7 @@ public class AlertReceiver extends BroadcastReceiver {
         NotificationHelper notificationHelper = new NotificationHelper(context);
         System.out.println("Inside of onReceive()");
         String data = intent.getStringExtra("data");
+        System.out.println(data);
 
         NotificationCompat.Builder nb = notificationHelper.getChannelNotification(data);
         notificationHelper.getManager().notify(1, nb.build());
