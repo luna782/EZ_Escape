@@ -1,20 +1,13 @@
 package com.example.ez_escape.controller;
 
-import static android.content.Context.ALARM_SERVICE;
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import static com.example.ez_escape.model.GlobalAlarmData.getGlobalAlarmData;
 
 import android.app.AlarmManager;
-import android.app.PendingIntent;
-import android.content.Context;
-import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ez_escape.AddNewAlertActivity;
-import com.example.ez_escape.AlertReceiver;
 import com.example.ez_escape.R;
 import com.example.ez_escape.model.Alert;
 import com.example.ez_escape.model.GlobalAlarmData;
@@ -96,15 +89,18 @@ public class Screen2SaveController implements View.OnClickListener {
 
         }
 
-        int min, hour, day;
+        int min, hour, day, month;
         //timeSplit[0] contains HH (H = hour)
         //timeSplit[1] contains MM (M = minute)
         String timeSplit[] = inputTime.split(":");
+        String dateSplit[] = inputDate.split("/");
 
         hour = Integer.parseInt(timeSplit[0]);
         min = Integer.parseInt(timeSplit[1]);
-        day = Integer.parseInt(inputDate);
-        makeAlarm(hour,day, min, inputSender, inputMessage);
+        day = Integer.parseInt(dateSplit[1]);
+        month = Integer.parseInt(dateSplit[0]);
+
+        makeAlarm(hour,day, month, min, inputMessage, inputSender);
 
         Alert alert = new Alert(inputDate, inputTime, inputSender, inputMessage);
         alert.addAlert(addNewAlertActivity);
@@ -115,14 +111,18 @@ public class Screen2SaveController implements View.OnClickListener {
         System.out.println("Save button added new alert");
 
     }
-    public void makeAlarm(int hour, int day, int minute, String inputSender, String inputMessage){
+    public void makeAlarm(int hour, int day, int month, int minute, String inputSender, String inputMessage){
         Calendar now = Calendar.getInstance();
         Calendar alarm = Calendar.getInstance();
 
         int difference; //the difference between today the day for the alarm
 
+        alarm.set(Calendar.MONTH, month);
+        alarm.set(Calendar.DATE, day);
         alarm.set(Calendar.HOUR_OF_DAY, hour);
         alarm.set(Calendar.MINUTE, minute);
+        alarm.set(Calendar.SECOND, 0);
+
         long alarmMillis = alarm.getTimeInMillis();
         if (day != now.get(Calendar.DATE)){
             difference = day - now.get(Calendar.DATE);

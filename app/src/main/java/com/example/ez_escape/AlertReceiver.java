@@ -10,7 +10,7 @@ import androidx.core.app.NotificationCompat;
 public class AlertReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         NotificationHelper notificationHelper = new NotificationHelper(context);
-
+        System.out.println("Inside of onReceive()");
         String data = intent.getStringExtra("data");
 
         NotificationCompat.Builder nb = notificationHelper.getChannelNotification(data);

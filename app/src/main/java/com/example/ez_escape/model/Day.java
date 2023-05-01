@@ -34,7 +34,7 @@ public class Day {
         } else {
             setCurDate(curDay);
         }
-        System.out.println("Successfully loaded:" + curMonth + curDay);
+        // System.out.println("Successfully loaded:" + curMonth + curDay);
         return this;
 
     }
