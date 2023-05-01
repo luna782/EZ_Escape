@@ -13,14 +13,14 @@ public class Calendar {
     public Calendar(CalendarActivity activity) {
         int i;
         calActivity = activity;
-        months = new Month[12];
+        months = new Month[13];
     }
 
     public void loadMonths() {
         int i;
         Alert tempAlert = null;
 
-        for (i = 0; i < 12; i++) {
+        for (i = 0; i < months.length; i++) {
             months[i] = new Month();
         }
 
