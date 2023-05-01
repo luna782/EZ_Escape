@@ -11,9 +11,7 @@ import androidx.core.app.NotificationCompat;
 public class NotificationHelper extends ContextWrapper {
     public static final String channelID = "channelID";
     public static final String channelName = "Channel Name";
-
     private NotificationManager tManager;
-
     public NotificationHelper(Context base) {
         super(base);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -28,19 +26,15 @@ public class NotificationHelper extends ContextWrapper {
             tManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         return tManager;
     }
-
     public NotificationCompat.Builder getChannelNotification(String data) {
         System.out.println("Inside of getChannelNotification()");
         String arr[] = data.split(",");
         String sender = arr[0];
         String message = arr[1];
-        System.out.println(sender + "/" + message);
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, channelID)
-                .setSmallIcon(R.drawable.messageicon)
+        return new NotificationCompat.Builder(getApplicationContext(), channelID)
                 .setContentTitle(sender)
                 .setContentText(message)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-        return builder;
+                .setSmallIcon(R.drawable.messageicon);
     }
 }
 

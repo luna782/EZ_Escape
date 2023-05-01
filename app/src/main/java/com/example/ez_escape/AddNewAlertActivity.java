@@ -30,6 +30,7 @@ public class AddNewAlertActivity extends AppCompatActivity {
     //private String userInputDate;
     //private String userInput;
     //EditText dateInputButton;
+    private static int requestCode = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,21 +137,22 @@ public class AddNewAlertActivity extends AppCompatActivity {
         //most recent alarm data would be in the last index of the data ArrayList
         int lastIndex = getGlobalAlarmData().getData().size() - 1;
         String data = getGlobalAlarmData().getData().get(lastIndex);
-        intent.putExtra("data", messageContent);
+        intent.putExtra("data", data);
 
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 8, intent, PendingIntent.FLAG_IMMUTABLE);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, requestCode, intent, PendingIntent.FLAG_IMMUTABLE);
         alarmManager.setExact(AlarmManager.RTC_WAKEUP, alarmMillis, pendingIntent);
 
         AlarmManager.AlarmClockInfo alarmClockInfo = new AlarmManager.AlarmClockInfo(alarmMillis, pendingIntent);
         alarmManager.setAlarmClock(alarmClockInfo, pendingIntent);
 
-        boolean alarmUp = (PendingIntent.getBroadcast(this, 8,
+        boolean alarmUp = (PendingIntent.getBroadcast(this, requestCode,
                 new Intent(this, AlertReceiver.class),
                 PendingIntent.FLAG_IMMUTABLE) != null);
 
         if (alarmUp) {
             Log.d("myTag", "Alarm is already active");
         }
+        requestCode++;
     }
 
 }

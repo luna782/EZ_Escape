@@ -15,7 +15,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/Theme.EZ_Escape"
-        tools:targetApi="31">
+        tools:targetApi="33">
         <activity
             android:name=".ViewAlertActivity"
             android:exported="false" />
