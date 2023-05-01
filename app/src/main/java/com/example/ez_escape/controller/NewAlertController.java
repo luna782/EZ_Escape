@@ -3,10 +3,10 @@ package com.example.ez_escape.controller;
 import android.content.Intent;
 import android.view.View;
 
+import com.example.ez_escape.ViewAlertActivity;
 import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.SettingsActivity;
-import com.example.ez_escape.ViewAlertActivity;
 
 /**
  * NewAlertController responsible for starting the AddNewAlertActivity

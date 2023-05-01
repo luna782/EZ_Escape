@@ -3,7 +3,6 @@ package com.example.ez_escape.controller;
 import android.content.Intent;
 import android.view.View;
 import android.widget.CalendarView;
-import android.widget.CalendarView.OnDateChangeListener;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -11,7 +10,6 @@ import androidx.annotation.NonNull;
 import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.ViewAlertActivity;
 
-import com.example.ez_escape.model.Alert;
 import com.example.ez_escape.model.Calendar;
 import com.example.ez_escape.model.Day;
 import com.example.ez_escape.model.Month;
@@ -57,6 +55,19 @@ public class Screen3ViewAlertsController implements View.OnClickListener {
     public void onClick(View view) {
         //Date is currently in milliseconds from 1970
         boolean alertCheck;
+        if (curDate == null) {
+            long x = calView.getDate();
+            String wholeDate;
+            String splitDate[];
+            Date tempDate = new Date(x);
+            wholeDate = tempDate.toString();
+            splitDate = wholeDate.split(" ");
+            String month = Month.monthValue(String.valueOf(Month.monthToNum(splitDate[1]) + 1));
+            String day = Day.dayValue(splitDate[2]);
+            curDate = month + "/" + day;
+            Toast r = Toast.makeText(view.getContext(), curDate, Toast.LENGTH_SHORT);
+            r.show();
+        }
 
         alertCheck = calendar.checkDay(curDate);
 

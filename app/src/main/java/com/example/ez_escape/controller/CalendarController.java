@@ -8,8 +8,6 @@ import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.SettingsActivity;
 import com.example.ez_escape.ViewAlertActivity;
 
-import java.util.Calendar;
-
 public class CalendarController implements View.OnClickListener{
     private CalendarActivity calendarActivity;
     private boolean clickedFromCalendarActivity = false;

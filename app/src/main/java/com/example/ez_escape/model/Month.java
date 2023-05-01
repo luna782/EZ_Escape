@@ -73,4 +73,50 @@ public class Month {
         }
         return curMonth;
     }
+
+    public static int monthToNum(String inputMonth) {
+        int curMonth;
+        switch (inputMonth) {
+            case "Jan":
+                curMonth = 1;
+                break;
+            case "Feb":
+                curMonth = 2;
+                break;
+            case "Mar":
+                curMonth = 3;
+                break;
+            case "Apr":
+                curMonth = 4;
+                break;
+            case "May":
+                curMonth = 5;
+                break;
+            case "Jun":
+                curMonth = 6;
+                break;
+            case "Jul":
+                curMonth = 7;
+                break;
+            case "Aug":
+                curMonth = 8;
+                break;
+            case "Sep":
+                curMonth = 9;
+                break;
+            case "Oct":
+                curMonth = 0;
+                break;
+            case "Nov":
+                curMonth = 1;
+                break;
+            case "Dec":
+                curMonth = 2;
+                break;
+            default:
+                curMonth = -1;
+                break;
+        }
+        return curMonth;
+    }
 }

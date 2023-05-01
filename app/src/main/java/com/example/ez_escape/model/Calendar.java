@@ -26,7 +26,7 @@ public class Calendar {
 
         for (i = 0; i < months.length; i++) {
             try {
-                months[i].loadDays(calActivity, i);
+                months[i].loadDays(calActivity, i );
             } catch (NullPointerException e) {
                 e.printStackTrace();
             }

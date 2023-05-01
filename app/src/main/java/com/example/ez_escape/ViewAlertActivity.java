@@ -1,15 +1,13 @@
 package com.example.ez_escape;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.ez_escape.controller.CalendarController;
 import com.example.ez_escape.controller.NewAlertController;
-import com.example.ez_escape.controller.Screen3ViewAlertsController;
 import com.example.ez_escape.controller.SettingsController;
 import com.example.ez_escape.model.Alert;
 import com.example.ez_escape.model.AlertViews;
@@ -23,7 +21,6 @@ public class ViewAlertActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Change activity!
         setContentView(R.layout.activity_view_alert);
 
         Button calendar_button = findViewById(R.id.view_schedule_button);
@@ -63,9 +60,5 @@ public class ViewAlertActivity extends AppCompatActivity {
 
         AlertViewsAdaptor alertViewsAdaptor = new AlertViewsAdaptor(this, R.layout.list_row, alertViews);
         listView.setAdapter(alertViewsAdaptor);
-
-
-
-
     }
 }

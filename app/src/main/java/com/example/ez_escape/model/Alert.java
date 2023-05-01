@@ -1,10 +1,5 @@
 package com.example.ez_escape.model;
 
-import android.content.Context;
-import android.renderscript.ScriptGroup;
-import android.text.InputType;
-import android.widget.CalendarView;
-
 import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.ViewAlertActivity;
@@ -12,14 +7,11 @@ import com.example.ez_escape.ViewAlertActivity;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Alert {
     private String date;
