@@ -11,6 +11,13 @@ public class GlobalAlarmData {
     private ArrayList<Integer> minutes = new ArrayList<>();
 
 
+
+    //each string in the data array list is comma separated values that is needed for the alarms/notifications
+    //sender,message
+    private ArrayList<String> data = new ArrayList<>();
+
+
+
     public static GlobalAlarmData getGlobalAlarmData()
     {
         if(globalAlarmDataInstance == null){
@@ -53,6 +60,14 @@ public class GlobalAlarmData {
 
     public void setSenders(ArrayList<String> senders) {
         this.senders = senders;
+    }
+
+    public ArrayList<String> getData() {
+        return data;
+    }
+
+    public void setData(ArrayList<String> data) {
+        this.data = data;
     }
 
 }
