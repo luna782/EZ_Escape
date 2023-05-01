@@ -23,20 +23,39 @@ import com.example.ez_escape.controller.Screen2SaveController;
 import com.example.ez_escape.controller.SettingsController;
 import com.example.ez_escape.model.Alert;
 
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
 
 public class AddNewAlertActivity extends AppCompatActivity {
 
     //private String userInputDate;
     //private String userInput;
     //EditText dateInputButton;
-    private static int requestCode = 1;
+    private static int requestCode;
+
+    public AddNewAlertActivity() {
+        super();
+        try {
+            requestCode = readAlarmCode(this);
+        } catch (IOException e) {
+            requestCode = 1;
+            throw new RuntimeException(e);
+        }
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_alert);
 
+        //Pass to alert receiver
+        AlertReceiver.setNewAlertActivity(this);
 
         //create alarm manager
         AlarmManager alarmManager;
@@ -153,6 +172,68 @@ public class AddNewAlertActivity extends AppCompatActivity {
             Log.d("myTag", "Alarm is already active");
         }
         requestCode++;
+        updateAlarmCode(this, requestCode);
+    }
+
+    public void updateAlarmCode(AddNewAlertActivity newAlertactivity, int requestCode) {
+        String fileName = "alarmCode.csv";
+        File file = new File(newAlertactivity.getFilesDir(), fileName);
+        try{
+            FileOutputStream fos = new FileOutputStream(file);
+            OutputStreamWriter osw = new OutputStreamWriter(fos);
+            osw.write(requestCode);
+            osw.flush();
+            osw.close();
+            fos.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+
+    }
+
+    public int readAlarmCode(AddNewAlertActivity newAlertactivity) throws IOException {
+        String fileName = "alarmCode.csv";
+
+//        File readFrom = new File(path, fileName);
+        File file = null;
+        try {
+            file = new File(newAlertactivity.getFilesDir(), fileName);
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            this.updateAlarmCode(this, 1);
+            return 1;
+        }
+
+        FileInputStream fis = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
+
+
+        try{
+            fis = new FileInputStream(file);
+            isr = new InputStreamReader(fis);
+            br = new BufferedReader(isr);
+
+            int code = 1;
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while((line = br.readLine()) != null ){
+                sb.append(line);
+                System.out.println("Line Read in:" + line);
+                code = Integer.parseInt(line);
+            }
+            br.close();
+            isr.close();
+            fis.close();
+            return code;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            this.updateAlarmCode(this, 1);
+            return 1;
+        }
+
     }
 
 }
