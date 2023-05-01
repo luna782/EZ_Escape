@@ -33,14 +33,14 @@ public class AlertReceiver extends BroadcastReceiver {
         notificationHelper.getManager().notify(1, builder.build());
 */
         NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(context.getApplicationContext(), "notify_001").setContentTitle(sender).setContentText(message).setSmallIcon(R.drawable.messageicon);
+                new NotificationCompat.Builder(context.getApplicationContext(), "notify_002").setContentTitle(sender).setContentText(message).setSmallIcon(R.drawable.messageicon);
         NotificationManager mNotificationManager =
                 (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
         {
-            String channelId = "notify_001";
+            String channelId = "notify_002";
             NotificationChannel channel = new NotificationChannel(
                     channelId,
                     "Channel human readable title",
@@ -49,7 +49,7 @@ public class AlertReceiver extends BroadcastReceiver {
             mBuilder.setChannelId(channelId);
         }
 
-        mNotificationManager.notify(0, mBuilder.build());
+        mNotificationManager.notify(1, mBuilder.build());
 
     }
 }
