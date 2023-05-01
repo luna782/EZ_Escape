@@ -1,13 +1,20 @@
 package com.example.ez_escape.controller;
 
+import static android.content.Context.ALARM_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import static com.example.ez_escape.model.GlobalAlarmData.getGlobalAlarmData;
 
 import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ez_escape.AddNewAlertActivity;
+import com.example.ez_escape.AlertReceiver;
 import com.example.ez_escape.R;
 import com.example.ez_escape.model.Alert;
 import com.example.ez_escape.model.GlobalAlarmData;
