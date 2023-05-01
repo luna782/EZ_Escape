@@ -38,10 +38,10 @@ public class ViewAlertActivity extends AppCompatActivity {
 
         //UNCOMMENT BELOW AFTER IMPLEMENTING PASSING THE DATE THROUGH INTENT
         String date = "";
-//        date = getIntent().getStringExtra("date");
+        date = getIntent().getStringExtra("date");
 
-//        TextView title = findViewById(R.id.title);
-//        title.setText(date);
+        TextView title = findViewById(R.id.title);
+        title.setText(date);
 
         ListView listView = findViewById(R.id.list_view);
         Alert tempAlert = new Alert();
