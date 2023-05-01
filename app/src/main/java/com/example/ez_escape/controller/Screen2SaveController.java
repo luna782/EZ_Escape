@@ -1,12 +1,22 @@
 package com.example.ez_escape.controller;
 
+import static android.content.Context.ALARM_SERVICE;
+import static androidx.core.content.ContextCompat.getSystemService;
+
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.ez_escape.AddNewAlertActivity;
+import com.example.ez_escape.AlertReceiver;
 import com.example.ez_escape.R;
 import com.example.ez_escape.model.Alert;
+
+import java.util.Calendar;
 
 /**
  * Description of class.
@@ -23,6 +33,18 @@ public class Screen2SaveController implements View.OnClickListener {
     private EditText sender;
     private EditText message;
     private AddNewAlertActivity addNewAlertActivity;
+    private AlarmManager alarmManager;
+
+    public Screen2SaveController(AddNewAlertActivity addNewAlertActivity, AlarmManager alarmManager){
+        this.alarmManager = alarmManager;
+        this.addNewAlertActivity = addNewAlertActivity;
+        date = addNewAlertActivity.findViewById(R.id.editTextDate);
+        time = addNewAlertActivity.findViewById(R.id.editTextTime);
+        sender = addNewAlertActivity.findViewById(R.id.editTextTextPersonName);
+        message = addNewAlertActivity.findViewById(R.id.editTextTextPersonName2);
+
+    }
+
 
     public Screen2SaveController(AddNewAlertActivity addNewAlertActivity){
         this.addNewAlertActivity = addNewAlertActivity;
@@ -70,6 +92,16 @@ public class Screen2SaveController implements View.OnClickListener {
 
         }
 
+        int min, hour, day;
+        //timeSplit[0] contains HH (H = hour)
+        //timeSplit[1] contains MM (M = minute)
+        String timeSplit[] = inputTime.split(":");
+
+        hour = Integer.parseInt(timeSplit[0]);
+        min = Integer.parseInt(timeSplit[1]);
+        day = Integer.parseInt(inputDate);
+        makeAlarm(hour,day, min);
+
         Alert alert = new Alert(inputDate, inputTime, inputSender, inputMessage);
         alert.addAlert(addNewAlertActivity);
 
@@ -79,4 +111,23 @@ public class Screen2SaveController implements View.OnClickListener {
         System.out.println("Save button added new alert");
 
     }
+    public void makeAlarm(int hour, int day, int minute){
+        Calendar now = Calendar.getInstance();
+        Calendar alarm = Calendar.getInstance();
+
+        int difference; //the difference between today the day for the alarm
+
+        alarm.set(Calendar.HOUR_OF_DAY, hour);
+        alarm.set(Calendar.MINUTE, minute);
+        long alarmMillis = alarm.getTimeInMillis();
+        if (day != now.get(Calendar.DATE)){
+            difference = day - now.get(Calendar.DATE);
+            alarmMillis += (difference * 86400000L);
+        }
+        addNewAlertActivity.startAlarm(alarmMillis);
+    }
+
+
+
 }
+

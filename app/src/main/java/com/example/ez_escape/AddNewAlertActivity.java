@@ -1,7 +1,12 @@
 package com.example.ez_escape;
 
+import static androidx.core.content.ContextCompat.getSystemService;
+
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlarmManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -25,6 +30,10 @@ public class AddNewAlertActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_alert);
+
+
+        //create alarm manager
+        AlarmManager alarmManager;
 
         Button clear_button = findViewById(R.id.clear_button);
         clear_button.setOnClickListener( new Screen2ClearController(this) );
@@ -74,6 +83,7 @@ public class AddNewAlertActivity extends AppCompatActivity {
 //        System.out.println(ret);*/
 
 
+
     }
 
     // get the text within the button 'inputField' [when the Save button is clicked]
@@ -106,6 +116,14 @@ public class AddNewAlertActivity extends AppCompatActivity {
             return true;
         else
             return false;
+    }
+    public void startAlarm(long alarmMillis){
+
+        AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
+        Intent intent = new Intent(this, AlertReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
+
+        alarmManager.set(AlarmManager.RTC_WAKEUP, alarmMillis, pendingIntent);
     }
 
 }

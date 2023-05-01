@@ -130,6 +130,46 @@ public class Alert {
 
     }
 
+    public ArrayList<Alert> getAlert(String date, ViewAlertActivity viewAlertActivity) throws IOException {
+        String fileName = "alerts.csv";
+
+//        File readFrom = new File(path, fileName);
+        Alert alert = null;
+        File file = new File(viewAlertActivity.getFilesDir(), fileName);
+        FileInputStream fis = null;
+        InputStreamReader isr = null;
+        BufferedReader br = null;
+
+        ArrayList<Alert> arrAlerts = new ArrayList<>();
+
+        try{
+            fis = new FileInputStream(file);
+            isr = new InputStreamReader(fis);
+            br = new BufferedReader(isr);
+
+            StringBuilder sb = new StringBuilder();
+            String line;
+            while((line = br.readLine()) != null ){
+                sb.append(line);
+                System.out.println("Line Read in:" + line);
+                String data[] = line.split(",");
+                if(data[0].equals(date)){
+                    alert = new Alert(data[0], data[1], data[2], data[3]);
+                    arrAlerts.add(alert);
+                }
+            }
+            br.close();
+            isr.close();
+            fis.close();
+            return arrAlerts;
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+
+    }
+
     //used for when CalendarActivity needs to read the alerts.csv to determine what days have alerts.
     public ArrayList<Alert> getAlert(String date, CalendarActivity viewAlertActivity) throws IOException {
         String fileName = "alerts.csv";

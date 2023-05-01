@@ -6,6 +6,7 @@ import android.view.View;
 import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.SettingsActivity;
+import com.example.ez_escape.ViewAlertActivity;
 
 import java.util.Calendar;
 
@@ -18,28 +19,45 @@ public class CalendarController implements View.OnClickListener{
     private AddNewAlertActivity addNewAlertActivity;
     private boolean clickedFromAddNewAlertActivity = false;
 
+    private ViewAlertActivity viewAlertActivity;
+    private boolean clickedFromViewAlertActivity = false;
 
 
 
-    //3 different constructors for when from the 3 different screens/activities a user will
-    //press on the new alert button to go to the new alert screen
+
+    //4 different constructors for when from the 4 different screens/activities a user will
+    //press on the calendar  button to go to the calendar screen
+
+    public CalendarController(ViewAlertActivity viewAlertActivity){
+        setViewAlertActivity(viewAlertActivity);
+        clickedFromCalendarActivity = false;
+        clickedFromSettingsActivity = false;
+        clickedFromAddNewAlertActivity = false;
+        clickedFromViewAlertActivity = true;
+    }
     public CalendarController(CalendarActivity calendarActivity){
         setCalendarActivity(calendarActivity);
         clickedFromCalendarActivity = true;
         clickedFromSettingsActivity = false;
         clickedFromAddNewAlertActivity = false;
+        clickedFromViewAlertActivity = false;
+
     }
     public CalendarController(SettingsActivity settingsActivity){
         setSettingsActivity(settingsActivity);
         clickedFromAddNewAlertActivity = false;
         clickedFromCalendarActivity = false;
         clickedFromSettingsActivity = true;
+        clickedFromViewAlertActivity = false;
+
     }
     public CalendarController(AddNewAlertActivity addNewAlertActivity){
         setAddNewAlertActivity(addNewAlertActivity);
         clickedFromAddNewAlertActivity = true;
         clickedFromCalendarActivity = false;
         clickedFromSettingsActivity = false;
+        clickedFromViewAlertActivity = false;
+
     }
 
     @Override
@@ -55,6 +73,10 @@ public class CalendarController implements View.OnClickListener{
         else if(clickedFromSettingsActivity == true){
             Intent intent = new Intent(settingsActivity, CalendarActivity.class );
             settingsActivity.startActivity(intent);
+        }
+        else if(clickedFromViewAlertActivity == true){
+            Intent intent = new Intent(viewAlertActivity, CalendarActivity.class );
+            viewAlertActivity.startActivity(intent);
         }
     }
 
@@ -80,5 +102,13 @@ public class CalendarController implements View.OnClickListener{
 
     public void setSettingsActivity(SettingsActivity settingsActivity) {
         this.settingsActivity = settingsActivity;
+    }
+
+    public ViewAlertActivity getViewAlertActivity() {
+        return viewAlertActivity;
+    }
+
+    public void setViewAlertActivity(ViewAlertActivity viewAlertActivity) {
+        this.viewAlertActivity = viewAlertActivity;
     }
 }
