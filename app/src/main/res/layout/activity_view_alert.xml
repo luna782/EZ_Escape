@@ -9,12 +9,16 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="bottom"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="655dp"
+            android:orientation="vertical">
 
         <TextView
             android:id="@+id/title"
@@ -31,11 +35,12 @@
             android:layout_height="520dp"
             android:layout_marginStart="10dp"/>
 
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="85dp"
-            android:gravity="bottom"
             android:orientation="horizontal">
 
 

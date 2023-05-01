@@ -15,6 +15,7 @@
         android:layout_marginTop="656dp"
         android:layout_marginBottom="-6dp"
         android:text="Settings"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -23,14 +24,15 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/view_scheduele_button"
+        android:id="@+id/new_alert_button"
         android:layout_width="133dp"
         android:layout_height="82dp"
         android:layout_marginStart="152dp"
         android:layout_marginTop="656dp"
         android:layout_marginEnd="129dp"
         android:layout_marginBottom="-6dp"
-        android:text="Calendar"
+        android:text="New Alert"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -142,13 +144,14 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/new_alert_button"
+        android:id="@+id/view_scheduele_button"
         android:layout_width="131dp"
         android:layout_height="82dp"
         android:layout_marginTop="656dp"
         android:layout_marginEnd="282dp"
         android:layout_marginBottom="-6dp"
-        android:text="New Alert"
+        android:text="Calendar"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"

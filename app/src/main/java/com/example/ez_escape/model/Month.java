@@ -105,13 +105,13 @@ public class Month {
                 curMonth = 9;
                 break;
             case "Oct":
-                curMonth = 0;
+                curMonth = 10;
                 break;
             case "Nov":
-                curMonth = 1;
+                curMonth = 11;
                 break;
             case "Dec":
-                curMonth = 2;
+                curMonth = 12;
                 break;
             default:
                 curMonth = -1;

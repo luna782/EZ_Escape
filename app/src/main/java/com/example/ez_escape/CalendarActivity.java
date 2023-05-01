@@ -13,6 +13,8 @@ import com.example.ez_escape.controller.Screen3ViewAlertsController;
 import com.example.ez_escape.controller.SettingsController;
 import com.example.ez_escape.model.Calendar;
 
+import java.util.Date;
+
 public class CalendarActivity extends AppCompatActivity {
 
     @Override
@@ -29,6 +31,11 @@ public class CalendarActivity extends AppCompatActivity {
 
         //Create CalendarView object
         CalendarView calendarDisplay = (CalendarView) findViewById(R.id.calendar);
+        long millisecondDate = calendarDisplay.getDate();
+        int date = (int) (millisecondDate / 31556952000L);
+
+        calendarDisplay.setMinDate(31557952000L * ((long) date));
+        calendarDisplay.setMaxDate(31556952000L * ((long) date + 1));
 
         //Button that sends user to viewAlertActivity Screen
         Button viewAlert = findViewById(R.id.view_alert_button);

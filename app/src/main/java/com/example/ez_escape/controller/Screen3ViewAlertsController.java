@@ -65,8 +65,6 @@ public class Screen3ViewAlertsController implements View.OnClickListener {
             String month = Month.monthValue(String.valueOf(Month.monthToNum(splitDate[1])));
             String day = Day.dayValue(splitDate[2]);
             curDate = month + "/" + day;
-            Toast r = Toast.makeText(view.getContext(), curDate, Toast.LENGTH_SHORT);
-            r.show();
         }
 
         alertCheck = calendar.checkDay(curDate);
