@@ -29,10 +29,13 @@ public class NotificationHelper extends ContextWrapper {
         return tManager;
     }
 
-    public NotificationCompat.Builder getChannelNotification() {
+    public NotificationCompat.Builder getChannelNotification(String data) {
+        String arr[] = data.split(",");
+        String sender = arr[0];
+        String message = arr[1];
         return new NotificationCompat.Builder(getApplicationContext(), channelID)
-                .setContentTitle("name")
-                .setContentText("message")
+                .setContentTitle(sender)
+                .setContentText(message)
                 .setSmallIcon(R.drawable.messageicon);
     }
 }

@@ -2,6 +2,8 @@ package com.example.ez_escape;
 
 import static androidx.core.content.ContextCompat.getSystemService;
 
+import static com.example.ez_escape.model.GlobalAlarmData.getGlobalAlarmData;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.AlarmManager;
@@ -121,6 +123,12 @@ public class AddNewAlertActivity extends AppCompatActivity {
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
+
+        //most recent alarm data would be in the last index of the data ArrayList
+        int lastIndex = getGlobalAlarmData().getData().size() - 1;
+        String data = getGlobalAlarmData().getData().get(lastIndex);
+        intent.putExtra("data", data);
+
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 1, intent, 0);
 
         alarmManager.set(AlarmManager.RTC_WAKEUP, alarmMillis, pendingIntent);

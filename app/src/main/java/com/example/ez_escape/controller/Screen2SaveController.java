@@ -3,6 +3,8 @@ package com.example.ez_escape.controller;
 import static android.content.Context.ALARM_SERVICE;
 import static androidx.core.content.ContextCompat.getSystemService;
 
+import static com.example.ez_escape.model.GlobalAlarmData.getGlobalAlarmData;
+
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -15,7 +17,9 @@ import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.AlertReceiver;
 import com.example.ez_escape.R;
 import com.example.ez_escape.model.Alert;
+import com.example.ez_escape.model.GlobalAlarmData;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 /**
@@ -100,7 +104,7 @@ public class Screen2SaveController implements View.OnClickListener {
         hour = Integer.parseInt(timeSplit[0]);
         min = Integer.parseInt(timeSplit[1]);
         day = Integer.parseInt(inputDate);
-        makeAlarm(hour,day, min);
+        makeAlarm(hour,day, min, inputSender, inputMessage);
 
         Alert alert = new Alert(inputDate, inputTime, inputSender, inputMessage);
         alert.addAlert(addNewAlertActivity);
@@ -111,7 +115,7 @@ public class Screen2SaveController implements View.OnClickListener {
         System.out.println("Save button added new alert");
 
     }
-    public void makeAlarm(int hour, int day, int minute){
+    public void makeAlarm(int hour, int day, int minute, String inputSender, String inputMessage){
         Calendar now = Calendar.getInstance();
         Calendar alarm = Calendar.getInstance();
 
@@ -124,7 +128,15 @@ public class Screen2SaveController implements View.OnClickListener {
             difference = day - now.get(Calendar.DATE);
             alarmMillis += (difference * 86400000L);
         }
+        GlobalAlarmData globalAlarmData = getGlobalAlarmData();
+        ArrayList<String> data = globalAlarmData.getData();
+        String d = inputSender + "," + inputMessage;
+        data.add(d);
+
         addNewAlertActivity.startAlarm(alarmMillis);
+
+
+
     }
 
 
