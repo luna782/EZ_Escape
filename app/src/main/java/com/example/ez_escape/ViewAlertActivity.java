@@ -14,7 +14,7 @@ public class ViewAlertActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //Change activity!
-        setContentView(R.layout.activity_calendar);
+        setContentView(R.layout.activity_settings);
 
 
 

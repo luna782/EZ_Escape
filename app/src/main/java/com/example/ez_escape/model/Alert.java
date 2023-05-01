@@ -56,12 +56,12 @@ public class Alert {
         String fileName = "alerts.csv";
         File file = new File(addNewAlertActivity.getFilesDir(), fileName);
         try{
-            FileOutputStream fos = new FileOutputStream(file);
+            FileOutputStream fos = new FileOutputStream(file, true);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
 //            FileWriter writer = new FileWriter( file )
-            String data = getDate() + "," + getTime() + "," + getSender() + "," + getMessage();
+            String data = getDate() + "," + getTime() + "," + getSender() + "," + getMessage() + "\n";
 //            fos.write(data.getBytes());
-            osw.write(data);
+            osw.append(data);
             osw.flush();
             osw.close();
             fos.close();
@@ -115,7 +115,13 @@ public class Alert {
             br.close();
             isr.close();
             fis.close();
+
+            if (arrAlerts.isEmpty()) {
+                return null;
+            }
+
             return arrAlerts;
+
         }
         catch (Exception e){
             e.printStackTrace();
@@ -146,9 +152,10 @@ public class Alert {
             String line;
             while((line = br.readLine()) != null ){
                 sb.append(line);
-                System.out.println("Line Read in:" + line);
+                System.out.println("Line Read in:" + line + "Date is " + date);
                 String data[] = line.split(",");
                 if(data[0].equals(date)){
+                    System.out.println("Adding alert to list");
                     alert = new Alert(data[0], data[1], data[2], data[3]);
                     arrAlerts.add(alert);
                 }
@@ -156,6 +163,10 @@ public class Alert {
             br.close();
             isr.close();
             fis.close();
+            if (arrAlerts.isEmpty()) {
+                return null;
+            }
+
             return arrAlerts;
         }
         catch (Exception e){
