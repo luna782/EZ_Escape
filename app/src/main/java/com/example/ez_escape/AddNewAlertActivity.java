@@ -38,17 +38,6 @@ public class AddNewAlertActivity extends AppCompatActivity {
     //EditText dateInputButton;
     private static int requestCode;
 
-    public AddNewAlertActivity() {
-        super();
-        try {
-            requestCode = readAlarmCode(this);
-        } catch (IOException e) {
-            requestCode = 1;
-            throw new RuntimeException(e);
-        }
-
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,6 +69,12 @@ public class AddNewAlertActivity extends AppCompatActivity {
         Button calendar_button = findViewById(R.id.view_scheduele_button);
         calendar_button.setOnClickListener(new CalendarController(this) );
 
+        try {
+            requestCode = readAlarmCode(this);
+        } catch (IOException e) {
+            requestCode = 1;
+            throw new RuntimeException(e);
+        }
 
 
         //testing writing and reading the alerts
@@ -178,10 +173,11 @@ public class AddNewAlertActivity extends AppCompatActivity {
     public void updateAlarmCode(AddNewAlertActivity newAlertactivity, int requestCode) {
         String fileName = "alarmCode.csv";
         File file = new File(newAlertactivity.getFilesDir(), fileName);
+        String code = String.valueOf(requestCode);
         try{
             FileOutputStream fos = new FileOutputStream(file);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
-            osw.write(requestCode);
+            osw.write(code);
             osw.flush();
             osw.close();
             fos.close();

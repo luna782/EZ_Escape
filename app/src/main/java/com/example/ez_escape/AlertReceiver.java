@@ -26,20 +26,18 @@ public class AlertReceiver extends BroadcastReceiver {
     public static int channelNumber;
     private static AddNewAlertActivity newAlertActivity;
 
-    public AlertReceiver() {
-        super();
+    public void onReceive(Context context, Intent intent) {
+        NotificationHelper notificationHelper = new NotificationHelper(context);
+        System.out.println("Inside of onReceive()");
+        String data = intent.getStringExtra("data");
+        System.out.println(data);
+
         try {
             channelNumber = readChannelNumber(newAlertActivity);
         } catch (IOException e) {
             channelNumber = 5;
             throw new RuntimeException(e);
         }
-    }
-    public void onReceive(Context context, Intent intent) {
-        NotificationHelper notificationHelper = new NotificationHelper(context);
-        System.out.println("Inside of onReceive()");
-        String data = intent.getStringExtra("data");
-        System.out.println(data);
 
         //NotificationCompat.Builder nb = notificationHelper.getChannelNotification(data);
 
@@ -81,10 +79,11 @@ public class AlertReceiver extends BroadcastReceiver {
     public void updateChannelNumber(AddNewAlertActivity newAlertactivity, int channelNumber) {
         String fileName = "channelNumber.csv";
         File file = new File(newAlertactivity.getFilesDir(), fileName);
+        String channel = String.valueOf(channelNumber);
         try{
             FileOutputStream fos = new FileOutputStream(file);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
-            osw.write(channelNumber);
+            osw.write(channel);
             osw.flush();
             osw.close();
             fos.close();
