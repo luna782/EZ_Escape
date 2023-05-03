@@ -1,8 +1,5 @@
 package com.example.ez_escape;
 
-import static android.app.PendingIntent.FLAG_IMMUTABLE;
-import static androidx.core.content.ContextCompat.getSystemService;
-
 import static com.example.ez_escape.model.GlobalAlarmData.getGlobalAlarmData;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -18,10 +14,9 @@ import android.widget.EditText;
 
 import com.example.ez_escape.controller.CalendarController;
 import com.example.ez_escape.controller.NewAlertController;
-import com.example.ez_escape.controller.Screen2ClearController;
-import com.example.ez_escape.controller.Screen2SaveController;
+import com.example.ez_escape.controller.ClearController;
+import com.example.ez_escape.controller.SaveController;
 import com.example.ez_escape.controller.SettingsController;
-import com.example.ez_escape.model.Alert;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -31,6 +26,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+/**
+ * This activity allows the user to add a new alert to the list of existing alerts
+ *
+ * UTSA CS 3443 - Final Project
+ *  * Spring 2023
+ */
 public class AddNewAlertActivity extends AppCompatActivity {
 
     //private String userInputDate;
@@ -50,10 +51,10 @@ public class AddNewAlertActivity extends AppCompatActivity {
         AlarmManager alarmManager;
 
         Button clear_button = findViewById(R.id.clear_button);
-        clear_button.setOnClickListener( new Screen2ClearController(this) );
+        clear_button.setOnClickListener( new ClearController(this) );
 
         Button save_button = findViewById(R.id.save_button);
-        save_button.setOnClickListener(new Screen2SaveController(this));
+        save_button.setOnClickListener(new SaveController(this));
 
         EditText dateInputButton = findViewById(R.id.editTextDate);
 
@@ -75,35 +76,6 @@ public class AddNewAlertActivity extends AppCompatActivity {
             requestCode = 1;
             throw new RuntimeException(e);
         }
-
-
-        //testing writing and reading the alerts
-        //first test
-/*        String date = "05/2314";
-//        String time = "01:22:1";
-//        Alert newAlert = new Alert(date, time, "dude", "bob");
-//        newAlert.addAlert(this);
-//        Alert ret = null;
-//        try {
-//            ret = newAlert.getAlert(date, this);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        System.out.println(ret);
-//        System.out.println("first alert" + ret.getDate() + ret.getMessage() );
-//
-//        //second test
-//        Alert newAlert2 = new Alert("333", "444", "eee", "ssss");
-//        newAlert2.addAlert(this);
-//        try {
-//            ret = newAlert.getAlert("333", this);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
-//        System.out.println(ret);*/
-
-
-
     }
 
     // get the text within the button 'inputField' [when the Save button is clicked]
@@ -137,17 +109,11 @@ public class AddNewAlertActivity extends AppCompatActivity {
         else
             return false;
     }
-    public void startAlarm(long alarmMillis, String messageContent){
+    public void startAlarm(long alarmMillis){
         System.out.println("Inside of startAlarm");
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
-        /*
-        //Pauls stuff
-        AlertReceiver receive = new AlertReceiver();
-        //Imported intent filter
-        IntentFilter filter = new IntentFilter();
-        registerReceiver(receive, filter);
-        */
+
         //most recent alarm data would be in the last index of the data ArrayList
         int lastIndex = getGlobalAlarmData().getData().size() - 1;
         String data = getGlobalAlarmData().getData().get(lastIndex);

@@ -11,6 +11,12 @@ import com.example.ez_escape.R;
 
 import java.util.ArrayList;
 
+/**
+ * This class is what implements row by row of the views inside the list view
+ *
+ * UTSA CS 3443 - Final Project
+ * Spring 2023
+ */
 public class AlertViewsAdaptor extends ArrayAdapter<AlertViews> {
 
     private Context context;

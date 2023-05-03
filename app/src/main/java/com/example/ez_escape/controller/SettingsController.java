@@ -10,6 +10,9 @@ import com.example.ez_escape.SettingsActivity;
 
 /**
  * Settings Controller will start the SettingsActivity if the settings button is clicked on from any screen
+ *
+ * UTSA CS 3443 - Final Project
+ * Spring 2023
  */
 
 public class SettingsController implements View.OnClickListener {

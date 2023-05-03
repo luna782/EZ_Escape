@@ -4,6 +4,12 @@ import com.example.ez_escape.CalendarActivity;
 
 import java.util.ArrayList;
 
+/**
+ * This model is used to help create the calender displayed in the calender activity screen
+ *
+ * UTSA CS 3443 - Final Project
+ *  * Spring 2023
+ */
 public class Month {
     private int maxDays = 31;
     private ArrayList<Day> days= null;
@@ -16,8 +22,6 @@ public class Month {
 
     public void loadDays(CalendarActivity activity, int month) {
         int i;
-        //dont need this?
-        //curMonth = month + 1;
         Day tempDay = null;
 
         for (i = 0; i < maxDays; i++) {

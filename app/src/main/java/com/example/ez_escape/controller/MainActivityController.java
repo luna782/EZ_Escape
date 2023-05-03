@@ -14,7 +14,13 @@ import android.widget.Toast;
 
 import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.MainActivity;
-
+/**
+ * MainActivity Controller is responsible for checking if the user
+ * entered the correct password upon OnClick. If correct, CalendarActivity is started
+ *
+ * UTSA CS 3443 - Final Project
+ * Spring 2023
+ */
 public class MainActivityController implements View.OnClickListener{
     private String message;
     private String password;
@@ -31,8 +37,7 @@ public class MainActivityController implements View.OnClickListener{
         //Only logic for the onclick method if statement; Implement actual function calls later for getting text
         if (password.equals(mainActivity.getUserPasswordInput())) {
             //Change Activity to Screen 2
-//            Toast t = Toast.makeText(view.getContext(), "Password match", Toast.LENGTH_SHORT);
-//            t.show();
+
             //with successful enter of correct password, go to Calendar activity screen
             Intent intent = new Intent(mainActivity, CalendarActivity.class);
             mainActivity.startActivity(intent);
@@ -46,7 +51,7 @@ public class MainActivityController implements View.OnClickListener{
 
     }
 
-    // FIXME: remove this function if not used
+
     public void setPassword(String password) {
         this.password = password;
     }

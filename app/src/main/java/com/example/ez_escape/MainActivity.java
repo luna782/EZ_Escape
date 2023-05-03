@@ -14,6 +14,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 
+/**
+ * This activity is the first screen that is loaded and before going to the next screen, the user has to input their password
+ * if password has not been made, the user can click the button to proceed to the calender screen
+ *
+ * UTSA CS 3443 - Final Project
+ *  * Spring 2023
+ */
 public class MainActivity extends AppCompatActivity {
 
     EditText passwordInputButton;

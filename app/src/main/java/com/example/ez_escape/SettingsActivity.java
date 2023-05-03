@@ -2,20 +2,23 @@ package com.example.ez_escape;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.ez_escape.controller.CalendarController;
 import com.example.ez_escape.controller.NewAlertController;
-import com.example.ez_escape.controller.Screen3ViewAlertsController;
 import com.example.ez_escape.controller.SettingsController;
 import com.example.ez_escape.controller.SettingsSubmitNewPassword;
 import com.example.ez_escape.model.Password;
 
 import java.io.IOException;
 
+/**
+ * This activity allows the user to view their current password and change it by inputting a new one
+ *
+ * UTSA CS 3443 - Final Project
+ *  * Spring 2023
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     @Override

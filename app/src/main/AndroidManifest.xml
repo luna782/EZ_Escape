@@ -20,9 +20,6 @@
             android:name=".ViewAlertActivity"
             android:exported="false" />
         <activity
-            android:name=".EditDeleteAlertActivity"
-            android:exported="false" />
-        <activity
             android:name=".SettingsActivity"
             android:exported="false" />
         <activity

@@ -9,7 +9,10 @@ import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.SettingsActivity;
 
 /**
- * NewAlertController responsible for starting the AddNewAlertActivity
+ * NewAlertController responsible for starting the AddNewAlertActivity when clicking on the New Alert button from different screens
+ *
+ * UTSA CS 3443 - Final Project
+ * Spring 2023
  */
 
 public class NewAlertController implements View.OnClickListener{

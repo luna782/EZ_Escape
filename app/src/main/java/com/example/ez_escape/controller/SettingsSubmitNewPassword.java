@@ -11,6 +11,14 @@ import com.example.ez_escape.model.Password;
 
 import java.util.Set;
 
+/**
+ * Upon clicking the submit button in the Settings Activity, the new password that was entered in the input box is written to the file that contains the user's password
+ *
+ *
+ * UTSA CS 3443 - Final Project
+ * Spring 2023
+ */
+
 public class SettingsSubmitNewPassword implements View.OnClickListener{
     private SettingsActivity settingsActivity;
     public SettingsSubmitNewPassword(SettingsActivity settingsActivity){

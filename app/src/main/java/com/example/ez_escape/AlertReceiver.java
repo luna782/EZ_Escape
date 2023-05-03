@@ -22,6 +22,12 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 
+/**
+ * This activity receives the intent that is made with each alert when the alarm for the corresponding alert goes off
+ *
+ * UTSA CS 3443 - Final Project
+ *  * Spring 2023
+ */
 public class AlertReceiver extends BroadcastReceiver {
     public static int channelNumber;
     private static AddNewAlertActivity newAlertActivity;
@@ -39,19 +45,10 @@ public class AlertReceiver extends BroadcastReceiver {
             throw new RuntimeException(e);
         }
 
-        //NotificationCompat.Builder nb = notificationHelper.getChannelNotification(data);
-
         String arr[] = data.split(",");
         String sender = arr[0];
         String message = arr[1];
-/*
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ChannelID")
-                .setContentTitle(sender)
-                .setContentText(message)
-                .setSmallIcon(R.drawable.messageicon);
 
-        notificationHelper.getManager().notify(1, builder.build());
-*/
         NotificationCompat.Builder mBuilder =
                 new NotificationCompat.Builder(context.getApplicationContext(), "notify_" + Integer.toString(AlertReceiver.channelNumber)).setContentTitle(sender).setContentText(message).setSmallIcon(R.drawable.messageicon);
         NotificationManager mNotificationManager =
@@ -101,7 +98,6 @@ public class AlertReceiver extends BroadcastReceiver {
     public int readChannelNumber(AddNewAlertActivity newAlertactivity) throws IOException {
         String fileName = "channelNumber.csv";
 
-//        File readFrom = new File(path, fileName);
         File file = null;
         try {
             file = new File(newAlertactivity.getFilesDir(), fileName);

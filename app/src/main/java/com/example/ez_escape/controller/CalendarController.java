@@ -8,6 +8,13 @@ import com.example.ez_escape.CalendarActivity;
 import com.example.ez_escape.SettingsActivity;
 import com.example.ez_escape.ViewAlertActivity;
 
+/**
+ * Calendar Controller is responsible for starting the CalendarActivity when clicking on the Calendar button from different screens
+ *
+ * UTSA CS 3443 - Final Project
+ * Spring 2023
+ */
+
 public class CalendarController implements View.OnClickListener{
     private CalendarActivity calendarActivity;
     private boolean clickedFromCalendarActivity = false;

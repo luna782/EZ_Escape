@@ -6,6 +6,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * This model is used to help the calender class create its calender
+ * It also assigns a day the calender with the alerts the user created for that day
+ * so upon the view alerts button on the calender screen the program knows if that day has alerts or not
+ *
+ * UTSA CS 3443 - Final Project
+ *  * Spring 2023
+ */
+
 public class Day {
     int curDate;
     //ArrayList meant to hold alerts for current day
@@ -34,7 +43,6 @@ public class Day {
         } else {
             setCurDate(curDay);
         }
-        // System.out.println("Successfully loaded:" + curMonth + curDay);
         return this;
 
     }

@@ -17,6 +17,12 @@ import com.example.ez_escape.model.AlertViewsAdaptor;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * This activity allows the user to view the alerts for the day they clicked on the calender screen
+ *
+ * UTSA CS 3443 - Final Project
+ *  * Spring 2023
+ */
 public class ViewAlertActivity extends AppCompatActivity {
 
     @Override

@@ -8,21 +8,21 @@ import com.example.ez_escape.AddNewAlertActivity;
 import com.example.ez_escape.R;
 
 /**
- * Description of class.
+ * Used for the AddNewAlertActivity screen to clear the input boxes
+ * by setting the text for the EditTexts to an empty string ""
  *
- * @author Name (abc123)
  * UTSA CS 3443 - Final Project
  * Spring 2023
  */
 
-public class Screen2ClearController extends Activity implements View.OnClickListener{
+public class ClearController extends Activity implements View.OnClickListener{
     private EditText date;
     private EditText time;
     private EditText sender;
     private EditText message;
     private AddNewAlertActivity addNewAlertActivity;
 
-    public Screen2ClearController(AddNewAlertActivity addNewAlertActivity){
+    public ClearController(AddNewAlertActivity addNewAlertActivity){
             this.addNewAlertActivity = addNewAlertActivity;
             date = addNewAlertActivity.findViewById(R.id.editTextDate);
             time = addNewAlertActivity.findViewById(R.id.editTextTime);

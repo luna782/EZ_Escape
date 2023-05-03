@@ -8,6 +8,12 @@ import android.os.Build;
 
 import androidx.core.app.NotificationCompat;
 
+/**
+ * This class receives the intent and information from the alert receiver and uses it to create the corresponding notification
+ *
+ * UTSA CS 3443 - Final Project
+ *  * Spring 2023
+ */
 public class NotificationHelper extends ContextWrapper {
     public static final String channelID = "channelID";
     public static final String channelName = "Channel Name";

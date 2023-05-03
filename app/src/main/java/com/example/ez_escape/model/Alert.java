@@ -13,6 +13,14 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
+/**
+ * This model is used to write the alarm that the user created to a file that contains all of the alarms that have been created
+ * there is also a read method that returns an arraylist of alert objects that all were created for the same date
+ *
+ * UTSA CS 3443 - Final Project
+ * Spring 2023
+ */
+
 public class Alert {
     private String date;
     private String time;
@@ -44,15 +52,12 @@ public class Alert {
      *
      */
     public void addAlert(AddNewAlertActivity addNewAlertActivity) {
-//        File path =  addNewAlertActivity.getApplicationContext().getFilesDir();
         String fileName = "alerts.csv";
         File file = new File(addNewAlertActivity.getFilesDir(), fileName);
         try{
             FileOutputStream fos = new FileOutputStream(file, true);
             OutputStreamWriter osw = new OutputStreamWriter(fos);
-//            FileWriter writer = new FileWriter( file )
             String data = getDate() + "," + getTime() + "," + getSender() + "," + getMessage() + "\n";
-//            fos.write(data.getBytes());
             osw.append(data);
             osw.flush();
             osw.close();
@@ -79,7 +84,7 @@ public class Alert {
     public ArrayList<Alert> getAlert(String date, AddNewAlertActivity addNewAlertActivity) throws IOException {
         String fileName = "alerts.csv";
 
-//        File readFrom = new File(path, fileName);
+
         Alert alert = null;
         File file = new File(addNewAlertActivity.getFilesDir(), fileName);
         FileInputStream fis = null;
@@ -125,7 +130,6 @@ public class Alert {
     public ArrayList<Alert> getAlert(String date, ViewAlertActivity viewAlertActivity) throws IOException {
         String fileName = "alerts.csv";
 
-//        File readFrom = new File(path, fileName);
         Alert alert = null;
         File file = new File(viewAlertActivity.getFilesDir(), fileName);
         FileInputStream fis = null;
@@ -166,7 +170,6 @@ public class Alert {
     public ArrayList<Alert> getAlert(String date, CalendarActivity viewAlertActivity) throws IOException {
         String fileName = "alerts.csv";
 
-//        File readFrom = new File(path, fileName);
         Alert alert = null;
         File file = new File(viewAlertActivity.getFilesDir(), fileName);
         FileInputStream fis = null;

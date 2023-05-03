@@ -5,11 +5,16 @@ import com.example.ez_escape.CalendarActivity;
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * This model is used to create the calender that is displayed on the calender activity screen
+ *
+ * UTSA CS 3443 - Final Project
+ * Spring 2023
+ */
 public class Calendar {
     private CalendarActivity calActivity = null;
     private Month months[];
 
-    //Might need constructor
     public Calendar(CalendarActivity activity) {
         int i;
         calActivity = activity;

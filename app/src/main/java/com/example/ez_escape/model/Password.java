@@ -22,11 +22,14 @@ import java.util.ArrayList;
 /**
  * The user's password is stored in the internal storage of the phone in a file called password.csv
  * password.csv should only contain one line of data being the user's password
+ *
+ * UTSA CS 3443 - Final Project
+ *  * Spring 2023
  */
 public class Password {
 
 
-    //****** There are 2 versions of the addNewPassword() and readUserPassword() (method overload)
+
     // for when a password needs to be read in MainActivity or read/written in SettingsActivity
 
     /**
@@ -57,7 +60,6 @@ public class Password {
      * @param newPassword
      */
     public void addNewPassword(MainActivity mainActivity, String newPassword) {
-//        File path =  addNewAlertActivity.getApplicationContext().getFilesDir();
         String fileName = "password.csv";
         File file = new File(mainActivity.getFilesDir(), fileName);
         try{
@@ -84,7 +86,6 @@ public class Password {
     public String readUserPassword(SettingsActivity settingsActivity) throws IOException {
         String fileName = "password.csv";
 
-//        File readFrom = new File(path, fileName);
         Alert alert = null;
         File file = new File(settingsActivity.getFilesDir(), fileName);
         FileInputStream fis = null;
@@ -128,22 +129,11 @@ public class Password {
     public String readUserPassword(MainActivity mainActivity) throws IOException {
         String fileName = "password.csv";
 
-//        File readFrom = new File(path, fileName);
         Alert alert = null;
         File file = new File(mainActivity.getFilesDir(), fileName);
         FileInputStream fis = null;
         InputStreamReader isr = null;
         BufferedReader br = null;
-        //Path path = Files.createTempFile("password", ".csv");
-        //if (!Files.exists(path)) {
-
-        /*try {
-            file = new File(mainActivity.getFilesDir(), fileName);
-        } catch (FileNotFoundException e) {
-            this.addNewPassword(mainActivity, "");
-            return "";
-        }*/
-
 
         try{
             fis = new FileInputStream(file);
@@ -167,7 +157,6 @@ public class Password {
             e.printStackTrace();
             this.addNewPassword(mainActivity, "");
             return "";
-            //return null;
         }
 
     }

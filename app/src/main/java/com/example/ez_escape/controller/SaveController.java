@@ -22,14 +22,16 @@ import java.util.Calendar;
 import java.util.Date;
 
 /**
- * Description of class.
+ * Used by the NewAlertActivity for the save button. Upon clicking the save button, a new Alert object
+ * will be made and write it's data to a new file in the phone's files. Also, a new alarm is made for the new alert made.
+ * (The notifications are based around the Alarm class. A time is set for the Alarm to go off.
+ * Once it does, the onReceive() method is called which is inside of the Alert Receiver class)
  *
- * @author Name (abc123)
  * UTSA CS 3443 - Final Project
  * Spring 2023
  */
 
-public class Screen2SaveController implements View.OnClickListener {
+public class SaveController implements View.OnClickListener {
 
     private EditText date;
     private EditText time;
@@ -40,7 +42,7 @@ public class Screen2SaveController implements View.OnClickListener {
 
     private static CalendarView getDay;
 
-    public Screen2SaveController(AddNewAlertActivity addNewAlertActivity, AlarmManager alarmManager){
+    public SaveController(AddNewAlertActivity addNewAlertActivity, AlarmManager alarmManager){
         this.alarmManager = alarmManager;
         this.addNewAlertActivity = addNewAlertActivity;
         date = addNewAlertActivity.findViewById(R.id.editTextDate);
@@ -51,7 +53,7 @@ public class Screen2SaveController implements View.OnClickListener {
     }
 
 
-    public Screen2SaveController(AddNewAlertActivity addNewAlertActivity){
+    public SaveController(AddNewAlertActivity addNewAlertActivity){
         this.addNewAlertActivity = addNewAlertActivity;
         date = addNewAlertActivity.findViewById(R.id.editTextDate);
         time = addNewAlertActivity.findViewById(R.id.editTextTime);
@@ -162,26 +164,15 @@ public class Screen2SaveController implements View.OnClickListener {
         System.out.println("Data before passing intent is " + d);
         data.add(d);
 
-        /*
-        System.out.println(difference);
 
-        System.out.println(alarmMillis);
-        tester = new Date(alarmMillis);
-        System.out.println(tester.toString());
-
-        System.out.println(curMil);
-        tester = new Date(curMil);
-        System.out.println(tester.toString());
-         */
-
-        addNewAlertActivity.startAlarm(curMil, d);
+        addNewAlertActivity.startAlarm(curMil);
 
 
 
     }
 
     public static void setGetDay(CalendarView in) {
-        Screen2SaveController.getDay = in;
+        SaveController.getDay = in;
     }
 
 }

@@ -20,12 +20,11 @@ import java.util.Date;
  * Class meant to send the user to the view alerts screen, with passing the data of the current day.
  * If there is no data associated with the day, returns a Toast.
  *
- * @author Name (abc123)
  * UTSA CS 3443 - Final Project
  * Spring 2023
  */
 
-public class Screen3ViewAlertsController implements View.OnClickListener {
+public class ViewAlertsController implements View.OnClickListener {
     private CalendarActivity calActivity;
     private CalendarView calView;
 
@@ -35,7 +34,7 @@ public class Screen3ViewAlertsController implements View.OnClickListener {
     private String curDate;
 
 
-    public Screen3ViewAlertsController(CalendarActivity inputActivity, CalendarView inputCalendarDisplay,Calendar inputCalendar) {
+    public ViewAlertsController(CalendarActivity inputActivity, CalendarView inputCalendarDisplay, Calendar inputCalendar) {
         this.calActivity = inputActivity;
         this.calView = inputCalendarDisplay;
         this.calendar = inputCalendar;
