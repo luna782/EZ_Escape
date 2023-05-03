@@ -103,7 +103,6 @@ public class Password {
             String line;
             while((line = br.readLine()) != null ){
                 sb.append(line);
-                System.out.println("Line Read in:" + line);
                 password = line;
             }
             br.close();
@@ -145,7 +144,6 @@ public class Password {
             String line;
             while((line = br.readLine()) != null ){
                 sb.append(line);
-                System.out.println("Line Read in:" + line);
                 password = line;
             }
             br.close();

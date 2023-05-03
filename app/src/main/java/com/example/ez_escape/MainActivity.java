@@ -42,12 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             password = passwordInstance.readUserPassword(this);
-            System.out.println("This is password return value " + password);
         } catch (IOException e) {
-            System.out.println("ERROR: could not read the user password");
-            if(password == null){
-                System.out.println("Password equals null");
-            }
             throw new RuntimeException(e);
         }
 

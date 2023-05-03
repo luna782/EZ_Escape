@@ -33,10 +33,6 @@ public class SettingsActivity extends AppCompatActivity {
             userPass = passwordInstance.readUserPassword(this);
             currPassword.setText( userPass );
         } catch (IOException e) {
-            System.out.println("Settings Activity could not read what the user's password is");
-            if(userPass == null || userPass.equals("")){
-                System.out.println("User password read in Settings Activity is null");
-            }
             throw new RuntimeException(e);
         }
         Button submitNewPasswordButton = findViewById(R.id.submit_new_password);

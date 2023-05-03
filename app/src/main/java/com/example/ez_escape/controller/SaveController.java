@@ -118,8 +118,6 @@ public class SaveController implements View.OnClickListener {
         Toast t = Toast.makeText(view.getContext(), "Alert added.", Toast.LENGTH_SHORT);
         t.show();
 
-        System.out.println("Save button added new alert");
-
     }
     public void makeAlarm(int hour, int day, int month, int minute, String inputSender, String inputMessage){
         Calendar now = Calendar.getInstance();
@@ -127,9 +125,6 @@ public class SaveController implements View.OnClickListener {
 
         long difference = 0; //the difference between today the day for the alarm
         long alarmMillis = 0;
-        System.out.println(month);
-        System.out.println(day);
-        System.out.println(hour);
 
         alarm.set(Calendar.MONTH, month);
         alarm.set(Calendar.DATE, day);
@@ -139,7 +134,6 @@ public class SaveController implements View.OnClickListener {
 
         long dayMil = getDay.getDate();
 
-        System.out.println(alarmMillis);
         Date tester = new Date(dayMil);
         String line = tester.toString();
         String lineSplit[] = line.split(" ");
@@ -161,7 +155,6 @@ public class SaveController implements View.OnClickListener {
         GlobalAlarmData globalAlarmData = getGlobalAlarmData();
         ArrayList<String> data = globalAlarmData.getData();
         String d = inputSender + "," + inputMessage;
-        System.out.println("Data before passing intent is " + d);
         data.add(d);
 
 

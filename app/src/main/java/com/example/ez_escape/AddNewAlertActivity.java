@@ -110,7 +110,6 @@ public class AddNewAlertActivity extends AppCompatActivity {
             return false;
     }
     public void startAlarm(long alarmMillis){
-        System.out.println("Inside of startAlarm");
         AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
         Intent intent = new Intent(this, AlertReceiver.class);
 
@@ -125,13 +124,6 @@ public class AddNewAlertActivity extends AppCompatActivity {
         AlarmManager.AlarmClockInfo alarmClockInfo = new AlarmManager.AlarmClockInfo(alarmMillis, pendingIntent);
         alarmManager.setAlarmClock(alarmClockInfo, pendingIntent);
 
-        boolean alarmUp = (PendingIntent.getBroadcast(this, requestCode,
-                new Intent(this, AlertReceiver.class),
-                PendingIntent.FLAG_IMMUTABLE) != null);
-
-        if (alarmUp) {
-            Log.d("myTag", "Alarm is already active");
-        }
         requestCode++;
         updateAlarmCode(this, requestCode);
     }
@@ -182,7 +174,6 @@ public class AddNewAlertActivity extends AppCompatActivity {
             String line;
             while((line = br.readLine()) != null ){
                 sb.append(line);
-                System.out.println("Line Read in:" + line);
                 code = Integer.parseInt(line);
             }
             br.close();

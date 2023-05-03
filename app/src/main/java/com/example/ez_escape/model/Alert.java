@@ -102,7 +102,6 @@ public class Alert {
             String line;
             while((line = br.readLine()) != null ){
                 sb.append(line);
-                System.out.println("Line Read in:" + line);
                 String data[] = line.split(",");
                 if(data[0].equals(date)){
                     alert = new Alert(data[0], data[1], data[2], data[3]);
@@ -147,7 +146,6 @@ public class Alert {
             String line;
             while((line = br.readLine()) != null ){
                 sb.append(line);
-                System.out.println("Line Read in:" + line);
                 String data[] = line.split(",");
                 if(data[0].equals(date)){
                     alert = new Alert(data[0], data[1], data[2], data[3]);
@@ -187,10 +185,8 @@ public class Alert {
             String line;
             while((line = br.readLine()) != null ){
                 sb.append(line);
-                System.out.println("Line Read in:" + line + "Date is " + date);
                 String data[] = line.split(",");
                 if(data[0].equals(date)){
-                    System.out.println("Adding alert to list");
                     alert = new Alert(data[0], data[1], data[2], data[3]);
                     arrAlerts.add(alert);
                 }

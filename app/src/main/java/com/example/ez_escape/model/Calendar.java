@@ -61,17 +61,13 @@ public class Calendar {
 
         if ((!(dayChecker == null)) || (!dayChecker.isEmpty())) {
 
-            System.out.println("Got into loop, ArrayList size = " + dayChecker.size());
             for (i = 0; i < dayChecker.size(); i++) {
 
-                System.out.println(dayChecker.get(i).getCurDate());
                 if (Integer.parseInt(curDay) == dayChecker.get(i).getCurDate()) {
                     return true;
                 }
             }
         }
-
-        System.out.println();
 
         return false;
 

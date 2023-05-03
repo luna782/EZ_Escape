@@ -34,9 +34,7 @@ public class AlertReceiver extends BroadcastReceiver {
 
     public void onReceive(Context context, Intent intent) {
         NotificationHelper notificationHelper = new NotificationHelper(context);
-        System.out.println("Inside of onReceive()");
         String data = intent.getStringExtra("data");
-        System.out.println(data);
 
         try {
             channelNumber = readChannelNumber(newAlertActivity);
@@ -49,22 +47,13 @@ public class AlertReceiver extends BroadcastReceiver {
         String sender = arr[0];
         String message = arr[1];
 
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(context.getApplicationContext(), "notify_" + Integer.toString(AlertReceiver.channelNumber)).setContentTitle(sender).setContentText(message).setSmallIcon(R.drawable.messageicon);
-        NotificationManager mNotificationManager =
-                (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(context.getApplicationContext(), "cID_" + Integer.toString(AlertReceiver.channelNumber)).setContentTitle(sender).setContentText(message).setSmallIcon(R.drawable.messageicon);
+        NotificationManager mNotificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
 
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
-        {
-            String channelId = "notify_" + Integer.toString(AlertReceiver.channelNumber);
-            NotificationChannel channel = new NotificationChannel(
-                    channelId,
-                    "Channel human readable title",
-                    NotificationManager.IMPORTANCE_HIGH);
-            mNotificationManager.createNotificationChannel(channel);
-            mBuilder.setChannelId(channelId);
-        }
+        String channelId = "cID_" + Integer.toString(AlertReceiver.channelNumber);
+        NotificationChannel channel = new NotificationChannel(channelId,"Alert Notification",NotificationManager.IMPORTANCE_HIGH);
+        mNotificationManager.createNotificationChannel(channel);
+        mBuilder.setChannelId(channelId);
 
         mNotificationManager.notify(AlertReceiver.channelNumber, mBuilder.build());
         AlertReceiver.channelNumber++;
@@ -122,7 +111,6 @@ public class AlertReceiver extends BroadcastReceiver {
             String line;
             while((line = br.readLine()) != null ){
                 sb.append(line);
-                System.out.println("Line Read in:" + line);
                 code = Integer.parseInt(line);
             }
             br.close();
